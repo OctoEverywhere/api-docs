@@ -1,0 +1,8 @@
+nav:
+  - index.md
+  - AI Failure Detection APIs: ai-failure-detection-apis
+  - App Connections: app-connections
+  - Webhook Notifications: webhook-notifications
+  - Printer API Remote Access: printer-api-remote-access
+  - OctoEverywhere Plugin API: plugin-api
+  - OctoEverywhere Error Codes: error-codes.md

@@ -1,25 +1,24 @@
-# Dev Container 
+
+<p align="center"><img src="https://octoeverywhere.com/img/logo.png" alt="OctoEverywhere's Logo" style="width:100px" /></p>
+<h1 align="center" style="margin-bottom:20px"><a href="https://octoeverywhere.com/?source=github_api_docs">OctoEverywhere</a></h1>
+
+# OctoEverywhere API Documentation
+
+This git repo contains the source for the OctoEverywhere API doc site:
+
+https://docs.octoeverywhere.com
+
+If you need awesome cloud tools for your 3D printer, checkout [OctoEverywhere.com!](https://octoeverywehre.com/source=github_api_docs)
+
+## Local Dev Setup
+
+- Run Docker
+- Open this repo in VS Code
+- Click the pop-up to run in a dev container.
+- Open http://localhost:8000
+
+The dev container will start, pull the PY dependencies, build, and start a web server on :8000. When you browser connect it will get realtime updates as you edit the markdown.
+
+If you kill the server and need to restart it, run the following command in the dev container terminal:
 
 `mkdocs serve -a 0.0.0.0:8000`
-
-# Setup
-
-## Github
-- Click on the user this template & create a new repository
-- Give the repository a name and click on create repository
-
-## Cloudflare
-Now the template is ready we will build the first version of the site to make sure everything is ready to go!
-- Go to https://dash.cloudflare.com
-- Go to `Workers & Pages`
-- Click `Create`
-- Go to pages and connect to git
-- Link your github accout if needed
-- Choose your repository you just made and click begin setup
-- In the build setting choose for `Mkdocs` as framework
-
-![Scherm­afbeelding 2024-07-08 om 17 40 57](https://github.com/svenvg93/mkdocs-material-starter/assets/4511676/c64915c5-cf09-43cf-97ec-c2c686806753)
-
-Now cloudflare will clone your github repro, build the website and publish it.
-If succesfull click continue project
-It will get a generate domain name like `mkdocs-em9.pages.dev`
