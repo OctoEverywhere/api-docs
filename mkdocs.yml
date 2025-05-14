@@ -64,7 +64,7 @@ theme:
 
   # Setup the font and logos.
   font:
-    text: Inter
+    text: Roboto
     code: Roboto Mono
   favicon: assets/favicon.png
   logo: assets/logo.png
