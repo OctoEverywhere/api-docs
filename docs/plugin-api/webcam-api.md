@@ -1,3 +1,11 @@
+---
+title: 3D Printing Webcam API
+description: OctoEverywhere's webcam API allows for streaming or capturing snapshots from your webcam from anywhere!
+authors:
+    - Quinn Damerell
+date: 2025-05-20
+---
+
 # Plugin Webcam API
 
 This page is still being built, but here's a quick overview.

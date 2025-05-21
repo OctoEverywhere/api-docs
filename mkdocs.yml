@@ -79,6 +79,8 @@ plugins:
   # Allows use to use nav.yml files per dir to control the nav order
   # https://lukasgeiter.github.io/mkdocs-awesome-nav/
   - awesome-nav:
+  - social:
+      cards: false
 
 # Additional configuration
 extra:

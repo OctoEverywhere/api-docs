@@ -1,3 +1,11 @@
+---
+title: Bambu Lab MQTT Remote Access
+description: OctoEverywhere's WebSocket MQTT proxy allows for full Bambu Lab 3D printer MQTT access from anywhere!
+authors:
+    - Quinn Damerell
+date: 2025-05-20
+---
+
 # MQTT Remote Access Proxy
 
 OctoEverywhere's [Bambu Connect](https://octoctoeverywhere.com/bambu?source=docs) is our plugin for Bambu Lab 3D printers.
