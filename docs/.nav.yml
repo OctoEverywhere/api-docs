@@ -1,5 +1,5 @@
 nav:
-  - index.md
+  - Start Here 👋: index.md
   - AI Failure Detection APIs: ai-failure-detection-apis
   - App Connections: app-connections
   - Webhook Notifications: webhook-notifications

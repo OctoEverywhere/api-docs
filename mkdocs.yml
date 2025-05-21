@@ -27,7 +27,7 @@ theme:
     # - header.autohide
     # - navigation.expand
     - navigation.footer
-    - navigation.indexes
+    #- navigation.indexes Disabled so that the header doesn't eat the index page.
     - navigation.instant
     - navigation.instant.prefetch
     - navigation.instant.progress
