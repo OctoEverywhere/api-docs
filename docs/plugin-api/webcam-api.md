@@ -2,7 +2,7 @@
 
 This page is still being built, but here's a quick overview.
 
-Remember all plugin APIs share a [common root path](./overview.md) and [custom error codes.](./overview.md)
+Remember all plugin APIs share a [common root path](./index.md) and [custom error codes.](./../error-codes.md)
 
 ## List Webcams
 

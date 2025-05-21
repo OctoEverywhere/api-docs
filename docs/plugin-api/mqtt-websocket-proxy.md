@@ -4,7 +4,7 @@ OctoEverywhere's [Bambu Connect](https://octoctoeverywhere.com/bambu?source=docs
 
 Bambu Lab 3D printers work differently from OctoPrint, Klipper, and Prusa Connect 3D printers. They rely on a protocol called MQTT to command and control the printer.
 
-MQTT is a lightweight protocol on top of TCP, which makes remote access tricky. However, we developed a WebSocket proxy for MQTT to allow Bambu Lab app developers to use OctoEverywhere's [App Connections](./../app-connections/) remote access.
+MQTT is a lightweight protocol on top of TCP, which makes remote access tricky. However, we developed a WebSocket proxy for MQTT to allow Bambu Lab app developers to use OctoEverywhere's [App Connections](../app-connections/index.md) remote access.
 
 Our MQTT proxy can be almost like an MQTT tunnel through a web socket. We designed the messages to be very similar to the MQTT messages, so only minor changes have to be made to swap our WebSocket proxy for an actual MQTT implementation.
 
@@ -13,15 +13,15 @@ Our MQTT proxy can be almost like an MQTT tunnel through a web socket. We design
 
 ### Websocket Endpoint
 
-The OctoEverywhere MQTT Websocket Proxy can be used from any [App Connection](./../app-connections/)  URL or [Shared Connection](https://octoeverywhere.com/sharedconnection) URL.
+The OctoEverywhere MQTT Websocket Proxy can be used from any [App Connection](../app-connections/index.md)  URL or [Shared Connection](https://octoeverywhere.com/sharedconnection) URL.
 
-The full WebSocket endpoint URL will look like this:
+```{.http .apirequest title="Secure WebSocket Endpoint"}
+wss://app-<id>.octoeverywhere.com/octoeverywhere-command-api/proxy/mqtt
+```
 
-```wss://app-<id>.octoeverywhere.com/octoeverywhere-command-api/proxy/mqtt```
+For the WebSocket authentication to OctoEverywhere's servers, use the same auth headers that you would use for other [App Connection](../app-connections/index.md) HTTP or WebSocket requests.
 
-For the WebSocket authentication to the OctoEverywhere servers, use the same auth headers that you would use for other [App Connection](./../app-connections/) HTTP or Websocket requests.
-
-When your client makes a WebSocket connection to the OctoEverywhere endpoint, the proxy MQTT connection will automatically be started, connected, and ready to use. If the printer MQTT connection fails, the WebSocket will close with one of the OctoEverywhere [common error codes.](./../error-codes.md)
+When your client makes a WebSocket connection to the OctoEverywhere endpoint, the proxy MQTT connection will automatically be started, connected, and ready to use. If the printer's MQTT connection fails, the WebSocket will close with one of the OctoEverywhere [common error codes.](./../error-codes.md)
 
 ### Bambu Lab MQTT Authentication
 

@@ -13,19 +13,19 @@ We strongly encourage our community to hack and make with our APIs; we love to s
 
 Here's what APIs OctoEverywhere offers, what will you build?
 
-### 🤖 [AI Print Failure Detection APIs](./ai-failure-detection-apis/)
+### 🤖 [AI Print Failure Detection APIs](./ai-failure-detection-apis/index.md)
 Build your own AI print failure detection app or service powered by our world-class AI print failure detection APIs.
 
-### 📱 [App Connections - Remote Access For 3rd Party Apps](./app-connections/)
+### 📱 [App Connections - Remote Access For 3rd Party Apps](./app-connections/index.md)
 Any 3rd party app or service developer can integrate OctoEverywhere's remote access into their code for free. Enabling secure & lightning-fast remote access for your users!
 
-### 🌍 [OctoPrint / Klipper / Bambu API Remote Access](./printer-api-remote-access/overview)
+### 🌍 [OctoPrint / Klipper / Bambu API Remote Access](./printer-api-remote-access/index.md)
 Get secure full access to your 3D printer's APIs from anywhere worldwide. Allowing you to easily monitor or control your 3D printer from a service, app, or anything!
 
-### 🔔 [Webhook Printer Notifications](./webhook-notifications/)
+### 🔔 [Webhook Printer Notifications](./webhook-notifications/index.md)
 Integrate your service, side project, app, or home lab with your 3D printer with OctoEverywhere's free webhook printer notifications.
 
-### 🔌 [OctoEverywhere Plugin APIs](./plugin-api/overview)
+### 🔌 [OctoEverywhere Plugin APIs](./plugin-api/index.md)
 The OctoEverywhere plugins APIs allow for platform agnostic control of your 3D printer, access to webcam snapshots and streams, and even MQTT proxy access for Bambu Lab 3D printers!
 
 ### Looking For Something Else?

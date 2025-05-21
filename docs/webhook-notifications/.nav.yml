@@ -1,5 +1,5 @@
 nav:
+  - Overview: index.md
   - Setup: setup.md
   - Event Types: event-types.md
   - Json Payload Format: json-payload-format.md
-  - "*"
