@@ -1,40 +1,40 @@
-# Webhook Json Payload Format
+# Webhook JSON Payload Format
 
 !!! note
-    Bookmark this page, because over time we will add new notification types and json properties.
+    Bookmark this page. Over time, we will add new notification types and JSON properties.
 
-The HTTP POST will have a json body defined as:
+The HTTP POST request includes a JSON body with these properties:
 
 - **PrinterId**
-    - (string) This is a unique ID that defines your printer. This ID will not change as long as your printer is attached to your account.
+    - (string) A stable unique ID for your printer. This ID will not change as long as your printer remains attached to your account.
 - **SecretKey**
     - (string) If you set a secret key, it will be included here.
 - **PrintId**
-    - (string) A string that's unique for each print. This string is created when a print starts and remains until the print is complete or stopped. This is useful for tracking which notifications are associated with which print jobs.
+    - (string) A unique string for each print. This string is created when a print starts and remains until the print is complete or stopped, making it useful for tracking which notifications are associated with which print jobs.
 - **EventType**
     - (int, enum) This enum maps to the notification type. [The enum is defined here.](event-types.md)
 - **PrinterName**
     - (string) The name you assigned your printer. This name will change if the printer is renamed on OctoEverywhere.
 - **SnapshotUrl**
-	- (string, optional) If a snapshot can be taken, this will be a URL where the image can be viewed or downloaded. Note this image URL will only remain valid for about 7 days.
+	- (string, optional) If a snapshot can be captured, this will be a URL where the image can be viewed or downloaded. This image URL will remain valid for about 7 days.
 - **QuickViewUrl**
-    - (string) A url to OctoEverywhere's Quick View, which provides a secure internet based way to quickly view the full printer state, pause, and cancel prints.
+    - (string) A URL to OctoEverywhere's Quick View, which provides a secure, internet-based way to quickly view the full printer state, pause prints, and cancel prints.
 - **FileName**
-	- (string, optional) the file name in OctoPrint for the current file being printed.
+	- (string, optional) The file name in OctoPrint for the current file being printed.
 - **DurationSec**
-	- (int, optional) the duration of the print, since the start, in seconds.
+	- (int, optional) The duration of the print since it started, in seconds.
 - **Progress**
-	- (int, optional) the current print progress as a percentage. Where 0 is 0% and 100 is 100%.
+	- (int, optional) The current print progress as a percentage, where 0 is 0% and 100 is 100%.
 - **TimeRemainingSec**
-	- (int, optional) the amount of time estimated to be remaining by OctoPrint, in seconds.
+	- (int, optional) The estimated remaining print time reported by OctoPrint, in seconds.
 - **ZOffsetMM**
-	- (int, optional) the current z-axis offset in millimeters.
+	- (int, optional) The current Z-axis offset in millimeters.
 - **Error**
-	- (string, optional) for EventTypes that indicate an error, this string might contain some kind of error message from OctoPrint describing the issue.
+	- (string, optional) For event types that indicate an error, this string may contain an error message from OctoPrint describing the issue.
 
-An example json body might be like this:
+An example JSON body might look like this:
 
-```
+```json
 {
     "PrinterId": "Id",
     "SecretKey": "Key",

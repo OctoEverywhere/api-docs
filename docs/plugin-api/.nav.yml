@@ -1,4 +1,0 @@
-nav:
-  - Overview: index.md
-  - Webcam API: webcam-api.md
-  - MQTT Websocket Proxy: mqtt-websocket-proxy.md

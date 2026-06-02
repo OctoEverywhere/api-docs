@@ -1,13 +1,27 @@
 {
-	"name": "MkDocs Dev Container",
+	"name": "Zensical Dev Container",
 	"image": "mcr.microsoft.com/devcontainers/python:3.13",
 	"customizations": {
 	  "vscode": {
-		"extensions": ["ms-python.python", "ms-azuretools.vscode-docker", "streetsidesoftware.code-spell-checker", "shd101wyy.markdown-preview-enhanced", "shardulm94.trailing-spaces"]
+		"extensions": [
+			"ms-python.python",
+			"ms-azuretools.vscode-docker",
+			"streetsidesoftware.code-spell-checker",
+			"shd101wyy.markdown-preview-enhanced",
+			"shardulm94.trailing-spaces",
+			"tamasfe.even-better-toml"
+		]
 	  }
 	},
 	"postCreateCommand": "pip install -r requirements.txt",
-	"postAttachCommand": "mkdocs serve -a 0.0.0.0:8000",
+	"postAttachCommand": "bash -lc 'cd \"${containerWorkspaceFolder}\" && exec env ZENSICAL_POLL_WATCHER=1 ZENSICAL_POLL_INTERVAL=1 zensical serve -a 0.0.0.0:8000'",
 	"forwardPorts": [8000],
+	"portsAttributes": {
+	  "8000": {
+		"label": "Zensical docs preview",
+		"protocol": "http",
+		"onAutoForward": "openBrowser"
+	  }
+	},
 	"remoteUser": "vscode"
   }

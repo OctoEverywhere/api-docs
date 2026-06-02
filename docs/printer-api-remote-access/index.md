@@ -1,21 +1,30 @@
 # 🌍 3D Printer API Remote Access
 
-Get secure access to your 3D printer's full APIs from anywhere. Allowing you to easily monitor, control, or manage your 3D printers from a service, app, or anything!
+OctoEverywhere provides secure remote access to any 3D printer's HTTP REST and WebSocket APIs. This gives you full access to your 3D printer from any service or app on the public internet.
 
-API Remote Access works with:
+## Works With
+
+Our API remote access works with any 3D printer supported by OctoEverywhere, including, but not limited to:
 
 - OctoPrint
 - Klipper / Moonraker
-- Bambu Lab OS
-- Elegoo OS
-- Creality OS
+- PrusaLink
+- Bambu Lab
+- Elegoo CC1 and CC2
+- And more
 
+## Get Started
 
-Full docs coming soon, but here's the quick version:
+Full docs are coming soon. Here's the quick version:
 
-- [Setup your 3D printer](https://octoeverywhere.com/getstarted?source=docs) with OctoEverywhere
-- Create A [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs)
-- Use any API or Websocket as you would locally, but replace the Shared Connection for the local printer's IP or hostname.
+- [Add the OctoEverywhere plugin to your 3D printer](https://octoeverywhere.com/getstarted?source=docs)
+- Create a [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs).
+- Use any REST API or WebSocket connection that would normally work directly with the 3D printer software. Replace the local IP address with your unique Shared Connection subdomain.
 
-Our relay service supports all HTTP request types (GET, POST, etc), websockets, and a MQTT proxy via websocket for Bambu Lab 3D printers.
+Our relay service supports all HTTP request types (GET, POST, etc.) and WebSockets.
 
+## MQTT Proxy Relay
+
+Our new MQTT relay enables access to your 3D printer's full MQTT server via the public internet. It uses a secure, standards-compliant MQTT-over-WebSocket transport, which is supported by most common MQTT clients.
+
+[Learn More](../plugin-api/mqtt-websocket-proxy.md){ .md-button .md-button--primary }

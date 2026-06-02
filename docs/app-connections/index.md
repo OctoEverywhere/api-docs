@@ -1,7 +1,7 @@
 # 📱 App Connections
 
-Any 3rd party app or service developer can integrate OctoEverywhere's remote access into their code for free. Enabling secure & lightning fast remote access for your users!
+Any third-party app or service developer can integrate OctoEverywhere's remote access for free, giving your users secure, lightning-fast access to their printers.
 
-We are in the process of moving our developer docs.
+We are moving our developer docs to this new portal. For now, please use our old API docs page:
 
-[Click Here To Read The Docs](https://octoeverywhere.stoplight.io/docs/octoeverywhere-api-docs/a3a745c6f38a0-app-connection-overview){ .md-button }
+[Read the Docs](https://octoeverywhere.stoplight.io/docs/octoeverywhere-api-docs/a3a745c6f38a0-app-connection-overview){ .md-button .md-button--primary }

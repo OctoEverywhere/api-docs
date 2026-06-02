@@ -3,7 +3,7 @@
 !!! note
     Remember that over time, more event types will be added to this list.
 
-The following defines the EventType enum:
+The following defines the `EventType` enum:
 
 1. **Print Started**
 2. **Print Complete**
@@ -11,10 +11,10 @@ The following defines the EventType enum:
 4. **Print Paused**
 5. **Print Resumed**
 6. **Print Progress**
-    - Fired due to a % progress milestone or a timer event.
+    - Fired when a progress percentage milestone is reached or a timer event runs.
 7. **Gadget Possible Failure Warning**
     - Gadget thinks the print might have a failure.
-8. **Gadget Paused Print Due To Failure**
+8. **Gadget Paused Print Due to Failure**
     - Gadget paused the print because it detected a failure.
     - Only fires when Gadget Smart Pause is enabled.
 9. **Error**
@@ -26,10 +26,10 @@ The following defines the EventType enum:
 12. **User Interaction Required**
     - Fires when the printer requests user interaction.
 13. **Non-Supporter Notification Limit**
-    - Fired when the user's account hits the daily notification limit.
-    - Standard accounts are limited to 3 webhook notifications a day; all supporter roles get unlimited notifications, [learn more here.](https://octoeverywhere.com/supporter?source=web_hook_dev_doc)
+    - Fired when the user's account reaches the daily notification limit.
+    - Standard accounts are limited to 3 webhook notifications a day; all supporter roles get unlimited notifications. [Learn more here.](https://octoeverywhere.com/supporter?source=web_hook_dev_doc)
 14. **Third Layer Complete**
-    - Just like FirstLayerComplete, but this fires on the third layer. Some users might find it more useful to check their print after the first few layers are done or both! It's up to you!
+    - Similar to FirstLayerComplete, but this fires on the third layer. Some users may prefer to check a print after the first few layers, or after both the first and third layers. It's up to you.
 15. **Bed Cooldown Complete**
     - Fired when the print bed has cooled down after a print ends.
 16. **Test Notification**

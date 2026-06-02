@@ -1,6 +1,6 @@
 ---
 title: 3D Printing Webcam API
-description: OctoEverywhere's webcam API allows for streaming or capturing snapshots from your webcam from anywhere!
+description: OctoEverywhere's webcam API lets you capture snapshots or stream your webcam from anywhere!
 authors:
     - Quinn Damerell
 date: 2025-05-20
@@ -8,16 +8,19 @@ date: 2025-05-20
 
 # Plugin Webcam API
 
-This page is still being built, but here's a quick overview.
+This page is still being built. Here's a quick overview.
 
-Remember all plugin APIs share a [common root path](./index.md) and [custom error codes.](./../error-codes.md)
+Remember, all plugin APIs share a [common root path](./index.md) and [custom error codes](./../error-codes.md).
+
+!!! tip
+    This generic webcam API works with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more!
 
 ## List Webcams
 
-Returns a list of all webcams the user has setup in the 3D printer host software. Note the array index is used as the `webcam index` for the other API calls.
+Returns a list of all webcams the user has set up in the 3D printer host software. The array index is used as the `webcam index` for the other API calls.
 
 ```{.http .apirequest title="HTTP Request"}
-GET https://<host>/octoeverywhere-command-api/webcam/list
+GET https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/webcam/list
 ```
 
 ```{.json .apiresponse title="Example Response"}
@@ -39,37 +42,27 @@ GET https://<host>/octoeverywhere-command-api/webcam/list
 
 ## Get Webcam Snapshot
 
-Returns a .jpg snapshot from the webcam.
+Returns a JPEG snapshot from the webcam.
 
 
 ```{.http .apirequest title="HTTP Request"}
-GET https://<host>/octoeverywhere-command-api/webcam/snapshot?index=0
+GET https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/webcam/snapshot?index=0
 ```
-
-/// api-parameters
-    open: True
 
 | Name       |  Type  | Default              | Description                                         |
 | ---------- | :----: | -------------------- | --------------------------------------------------- |
-| `index` | int | 0          | The index of the webcam to get a snapshot from.                            |
-
-///
+| `index` | int | 0          | The webcam index to capture a snapshot from.                            |
 
 
 
 ## Get Webcam Stream
 
-Returns a mjpeg stream of the webcam. The mjpeg stream is a series of jpeg images streamed as the result of the HTTP request.
+Returns an MJPEG stream from the webcam. The stream is a series of JPEG images returned by the HTTP request.
 
 ```{.http .apirequest title="HTTP Request"}
-GET https://<host>/octoeverywhere-command-api/webcam/stream?index=0
+GET https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/webcam/stream?index=0
 ```
-
-/// api-parameters
-    open: True
 
 | Name       |  Type  | Default              | Description                                         |
 | ---------- | :----: | -------------------- | --------------------------------------------------- |
-| `index` | int | 0          | The webcam index to get a stream from.                            |
-
-///
+| `index` | int | 0          | The webcam index to stream from.                            |

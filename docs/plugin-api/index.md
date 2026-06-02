@@ -1,33 +1,44 @@
-# Plugin API Overview
+# Plugin APIs
 
-## What is it?
+## Overview
 
-The OctoEverywhere plugin provides a set of useful APIs that can be accessed from any OctoEverywhere remote access connection. The plugin APIs can be used from:
+The OctoEverywhere plugin exposes printer-agnostic APIs that can be accessed from any OctoEverywhere remote access connection. These APIs abstract the printer host and give you consistent access to status, control, webcams, and more.
 
-- Shared Connections
-- App Connections
+!!! tip
+    These APIs are a great way to work with status, control, webcams, and more across every 3D printer OctoEverywhere supports.
 
-## Root Path
+## Calling the APIs
 
-This is the common root path shared by all plugin APIs.
+The plugin APIs can be called using a [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api) or [App Connection](../app-connections/index.md) URL, using:
 
-`https://<host>/octoeverywhere-command-api/...`
+`https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/...`
+
+Where `<unique_id>` is your unique shared connection or app connection subdomain.
 
 ## HTTP Error Codes
 
-[OctoEverywhere Error Codes](../error-codes.md) can be returned from any API to indicate errors.
+Plugin APIs return common [OctoEverywhere Error Codes](../error-codes.md) for OctoEverywhere service-side issues and standard HTTP error codes for plugin API issues.
 
-## APIs
+## Plugin APIs
+
+### [Printer Status](printer-status.md)
+
+A printer-agnostic JSON object with current printer status, print progress, percentage complete, estimated time remaining, and more.
+
+### [Printer Control](printer-control.md)
+
+Printer-agnostic control for pausing or canceling prints, toggling lights, homing axes, extruding filament, and more.
 
 ### [Webcam APIs](webcam-api.md)
 
-**Works With:** All OctoEverywhere Plugins
+A set of printer-agnostic webcam APIs, including camera lists, multi-camera snapshots, and multi-camera streams.
 
-The plugin webcam APIs create a printer host-agnostic set of webcam APIs, including listing webcams, getting multi-cam snapshots, and multi-cam streams - making accessing the webcam on different types 3D printers easy.
+### [MQTT over WebSocket Proxy](mqtt-websocket-proxy.md)
 
+**Works With:** Bambu Lab & Elegoo Centauri Carbon 2
 
-### [MQTT Websocket Proxy](mqtt-websocket-proxy.md)
+Bambu Lab and Elegoo Centauri Carbon 2 printers use MQTT for low-level status, control, and event streams. OctoEverywhere provides a secure, internet-facing, standards-compliant MQTT-over-WebSocket proxy so apps can use normal MQTT client libraries to reach the printer from anywhere.
 
-**Works With:** Bambu Lab OctoEverywhere Plugins
+The original JSON-based WebSocket transport is still available for existing integrations, but new clients should use the standards-compliant proxy.
 
-Bambu Lab 3D printers use MQTT as their primary control and monitoring protocol. Since working with MQTT is tricky on the web, the OctoEverywhere plugin has a full MQTT proxy implementation using WebSockets.
+[Legacy JSON Transport Reference](mqtt-websocket-proxy-json-legacy.md)
