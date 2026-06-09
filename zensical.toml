@@ -47,26 +47,28 @@ Copyright &copy; 2026 OctoEverywhere
 # Read more: https://zensical.org/docs/setup/navigation/
 nav = [
   {"Welcome 👋" = "index.md"},
-  {"AI Failure Detection APIs" = [
-    {"Overview" = "ai-failure-detection-apis/index.md"},
-    {"Create Context" = "ai-failure-detection-apis/create-context.md"},
-    {"Process" = "ai-failure-detection-apis/process.md"}
-  ]},
   {"App Connections" = "app-connections/index.md"},
   {"Printer API Remote Access" = "printer-api-remote-access/index.md"},
+  {"3D Printer APIs" = [
+    {"Overview" = "plugin-api/index.md"},
+    {"Status" = "plugin-api/printer-status.md"},
+    {"Control" = "plugin-api/printer-control.md"},
+    {"Webcam" = "plugin-api/webcam-api.md"},
+    {"Files" = "plugin-api/files-api.md"},
+    {"MQTT WebSocket Proxy" = "plugin-api/mqtt-websocket-proxy.md"},
+    {"JSON MQTT Proxy" = "plugin-api/mqtt-websocket-proxy-json-legacy.md"},
+    {"Error Handling" = "plugin-api/plugin-api-errors.md"},
+  ]},
   {"Webhook Notifications" = [
     {"Overview" = "webhook-notifications/index.md"},
     {"Setup" = "webhook-notifications/setup.md"},
     {"Event Types" = "webhook-notifications/event-types.md"},
     {"JSON Payload Format" = "webhook-notifications/json-payload-format.md"}
   ]},
-  {"Plugin APIs" = [
-    {"Overview" = "plugin-api/index.md"},
-    {"Printer Status" = "plugin-api/printer-status.md"},
-    {"Printer Control" = "plugin-api/printer-control.md"},
-    {"Webcam API" = "plugin-api/webcam-api.md"},
-    {"MQTT WebSocket Proxy" = "plugin-api/mqtt-websocket-proxy.md"},
-    {"JSON MQTT Proxy" = "plugin-api/mqtt-websocket-proxy-json-legacy.md"},
+  {"AI Failure Detection APIs" = [
+    {"Overview" = "ai-failure-detection-apis/index.md"},
+    {"Create Context" = "ai-failure-detection-apis/create-context.md"},
+    {"Process" = "ai-failure-detection-apis/process.md"}
   ]},
   {"API Error Codes" = "error-codes.md"},
 ]

@@ -1,19 +1,24 @@
 ---
-title: Printer Status API
-description: OctoEverywhere's printer status API returns a printer-agnostic status object for the current print.
+title: 3D Printer Status API
+description: OctoEverywhere's status API lets you gives you real-time 3D print status information from OctoPrint, Moonraker, Bambu Lab, PrusaLink and more from one common API!
 authors:
     - Quinn Damerell
 date: 2026-06-01
 ---
 
-# Printer Status API
+# 3D Printer Status API
 
 The Printer Status API returns a printer-agnostic JSON object with the current printer state, active print details, available light states, OctoEverywhere Gadget status, platform version, supported control features, and webcam summary.
 
-Remember, all plugin APIs share a [common root path](./index.md) and [custom error codes](./../error-codes.md).
-
 !!! tip
-    This generic status API works with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more.
+    This common API works with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more.
+
+[Get Started With Plugin APIs](index.md){ .md-button .md-button--primary }
+
+
+## Common Error Codes
+
+All Plugin APIs share a set of [common error codes](./plugin-api-errors.md) that can be returned for issues like the OctoEverywhere plugin is offline, auth issues, etc.
 
 ## HTTP Request
 
@@ -132,14 +137,3 @@ Some fields can be `null`, `0`, or omitted when the host platform does not provi
 | `FEATURE_HOMING` | `4` | [Home](printer-control.md#home) |
 | `FEATURE_EXTRUSION` | `8` | [Extrude](printer-control.md#extrude) |
 | `FEATURE_TEMPERATURE_CONTROL` | `16` | [Set Temp](printer-control.md#set-temp) |
-
-## Error Response
-
-If the plugin cannot read printer status, the command still returns a JSON envelope with a non-`200` `Status`.
-
-```{.json .apiresponse title="Example Error Response"}
-{
-    "Status": 785,
-    "Error": "Host not connected"
-}
-```

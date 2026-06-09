@@ -1,6 +1,6 @@
 ---
-title: 3D Printing Webcam API
-description: OctoEverywhere's webcam API lets you capture snapshots or stream your webcam from anywhere!
+title: 3D Printer Webcam API
+description: OctoEverywhere's webcam API lets you get webcam snapshots and streams from OctoPrint, Moonraker, Bambu Lab, PrusaLink and more from one common API!
 authors:
     - Quinn Damerell
 date: 2025-05-20
@@ -8,12 +8,16 @@ date: 2025-05-20
 
 # Plugin Webcam API
 
-This page is still being built. Here's a quick overview.
-
-Remember, all plugin APIs share a [common root path](./index.md) and [custom error codes](./../error-codes.md).
+OctoEverywhere's Plugin Webcam API is a platform-agnostic 3D printer API that allows access webcam snapshots and streams from OctoPrint, Moonraker, Bambu Lab, and PrusaLink with a single common API surface.
 
 !!! tip
-    This generic webcam API works with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more!
+    These APIs work with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more.
+
+[Get Started With Plugin APIs](index.md){ .md-button .md-button--primary }
+
+## Common Error Codes
+
+All Plugin APIs share a set of [common error codes](./plugin-api-errors.md) that can be returned for issues like the OctoEverywhere plugin is offline, auth issues, etc.
 
 ## List Webcams
 
@@ -25,17 +29,20 @@ GET https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/webcam/lis
 
 ```{.json .apiresponse title="Example Response"}
 {
-    "DefaultIndex": 0,
-    "Webcams": [
-        {
-            "Name": "Webcam Name",
-            "FlipH": false,
-            "FlipV": false,
-            "Rotation": 0,
-            "Enabled": true
-        }
-        ...
-    ]
+    "Status": 200,
+    "Result:": {
+        "DefaultIndex": 0,
+        "Webcams": [
+            {
+                "Name": "Webcam Name",
+                "FlipH": false,
+                "FlipV": false,
+                "Rotation": 0,
+                "Enabled": true
+            }
+            ...
+        ]
+    }
 }
 ```
 

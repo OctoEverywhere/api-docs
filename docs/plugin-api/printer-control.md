@@ -1,19 +1,27 @@
 ---
-title: Printer Control API
+title: 3D Printer Control API
 description: OctoEverywhere's printer control API provides printer-agnostic commands for pause, resume, cancel, lights, movement, extrusion, and temperature control.
 authors:
     - Quinn Damerell
 date: 2026-06-01
 ---
 
-# Printer Control API
+# 3D Printer Control API
 
-The Printer Control API provides printer-agnostic commands for common actions such as pausing, resuming, canceling, toggling lights, homing, movement, extrusion, and temperature control.
-
-Remember, all plugin APIs share a [common root path](./index.md) and [custom error codes](./../error-codes.md). Check the `Features` bitmask from the [Printer Status API](printer-status.md#feature-flags) before showing optional controls.
+The 3D Printer Control API provides printer-agnostic commands for common actions such as pausing, resuming, canceling, toggling lights, homing, moving, extruding, and controlling temperature.
 
 !!! tip
-    These generic control APIs work with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more.
+    These APIs work with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more.
+
+[Get Started With Plugin APIs](index.md){ .md-button .md-button--primary }
+
+## Feature Flags
+
+To find out what features your 3D printer supports, check the `Features` bitmask from the [Printer Status API](printer-status.md#feature-flags) before showing optional controls.
+
+## Common Error Codes
+
+All Plugin APIs share a set of [common error codes](./plugin-api-errors.md) that can be returned for issues like the OctoEverywhere plugin is offline, auth issues, etc.
 
 ## Response Format
 
@@ -180,18 +188,3 @@ POST https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/set-temp
 | `ChamberC` | number | No | Chamber target temperature in Celsius. Maximum `75C`. |
 | `ToolC` | number | No | Hotend target temperature in Celsius. Maximum `260C`. |
 | `ToolNumber` | int | No | Tool index for multi-tool printers. |
-
-
-## Common Command Status Codes
-
-| Status | Meaning |
-| :----: | ------- |
-| `750` | Unknown command failure. |
-| `751` | Failed to parse command arguments. |
-| `752` | Command execution failed. |
-| `753` | Failed to serialize the command response. |
-| `754` | Unknown command path. |
-| `785` | Host or firmware is not connected. |
-| `786` | Invalid printer state for the requested action. |
-| `787` | The plugin cannot connect because too many clients are connected. |
-| `788` | Feature is not supported on the current platform. |

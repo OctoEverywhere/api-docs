@@ -4,8 +4,11 @@
         "Creality",
         "Damerell",
         "Elegoo",
+        "gcode",
         "MQTT",
         "Prusa",
+        "Snapmaker",
+        "Sovol",
         "zensical"
     ]
 }
