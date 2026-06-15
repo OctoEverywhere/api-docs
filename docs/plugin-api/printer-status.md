@@ -13,7 +13,7 @@ The Printer Status API returns a printer-agnostic JSON object with the current p
 !!! tip
     This common API works with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more.
 
-[Get Started With Plugin APIs](index.md){ .md-button .md-button--primary }
+[Get Started With Plugin APIs](overview.md){ .md-button .md-button--primary }
 
 
 ## Common Error Codes

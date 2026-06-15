@@ -34,7 +34,7 @@ You must have the OctoEverywhere plugin set up and connected to your 3D printer.
 
 ### Get Your Secure Remote Access URL
 
-The Plugin APIs can be called using a [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api) or [App Connection](../app-connections/index.md) URL. The common calling format is:
+The Plugin APIs can be called using a [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api) or [App Connection](../app-connections/overview.md) URL. The common calling format is:
 
 `https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/...`
 
@@ -42,7 +42,7 @@ Where `<unique_id>` is your unique shared connection or app connection subdomain
 
 ### Authentication
 
-The Plugin APIs are callable from anywhere on the public internet and are secured using OctoEverywhere's advanced access control system. The Plugin APIs share the authentication required by the [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api) or [App Connection](../app-connections/index.md).
+The Plugin APIs are callable from anywhere on the public internet and are secured using OctoEverywhere's advanced access control system. The Plugin APIs share the authentication required by the [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api) or [App Connection](../app-connections/overview.md).
 
 ### HTTP Error Codes
 

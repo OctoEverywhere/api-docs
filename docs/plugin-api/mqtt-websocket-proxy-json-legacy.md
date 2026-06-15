@@ -26,13 +26,13 @@ The legacy JSON protocol can provide full MQTT access to supported Bambu Lab and
 
 ### WebSocket Endpoint
 
-The OctoEverywhere MQTT WebSocket Proxy can be used from any [App Connection](../app-connections/index.md) URL or [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api_legacy_mqtt) URL.
+The OctoEverywhere MQTT WebSocket Proxy can be used from any [App Connection](../app-connections/overview.md) URL or [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api_legacy_mqtt) URL.
 
 ```{.http .apirequest title="Secure WebSocket Endpoint"}
 wss://<app-or-shared-connection-host>/octoeverywhere-command-api/proxy/mqtt
 ```
 
-For WebSocket authentication to OctoEverywhere's servers, use the same auth headers that you would use for other [App Connection](../app-connections/index.md) HTTP or WebSocket requests.
+For WebSocket authentication to OctoEverywhere's servers, use the same auth headers that you would use for other [App Connection](../app-connections/overview.md) HTTP or WebSocket requests.
 
 When your client makes a WebSocket connection to the OctoEverywhere endpoint, the proxy starts and connects the MQTT session automatically. If the printer's MQTT connection fails, the WebSocket will close with one of the OctoEverywhere [common error codes](./../error-codes.md).
 

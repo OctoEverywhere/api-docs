@@ -13,7 +13,7 @@ The Process API is where the AI does the heavy lifting.
 This API must be called with a context created by the [Create Context API](create-context.md). Each request sends a recent JPEG image of the print. OctoEverywhere's ML image models process the image, then the temporal combination model returns output based on the current image, previous context, and other signals.
 
 !!! tip
-    Process API usage is counted as part of [AI failure detection pricing](index.md#pricing). Every developer gets 5,000 free calls per month, which is about 55 hours of printing.
+    Process API usage is counted as part of [AI failure detection pricing](overview.md#pricing). Every developer gets 5,000 free calls per month, which is about 55 hours of printing.
 
 ## HTTP Request
 
@@ -127,7 +127,7 @@ If the API does not return a 200 response, it returns an HTTP error code with a 
 
 | Name           | Type   | Description |
 | -------------- | :----: | ----------- |
-| `ErrorType`    | string | A well-known error type. See [Error Handling](index.md#error-handling). |
+| `ErrorType`    | string | A well-known error type. See [Error Handling](overview.md#error-handling). |
 | `ErrorDetails` | string | Details about this specific error. |
 
 ## Calling Pattern

@@ -14,7 +14,7 @@ OctoEverywhere's Plugin Files API is a 3D printer platform agnostic API that all
 !!! tip
     These APIs work with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more.
 
-[Get Started With Plugin APIs](index.md){ .md-button .md-button--primary }
+[Get Started With Plugin APIs](overview.md){ .md-button .md-button--primary }
 
 ## Virtual File Paths
 

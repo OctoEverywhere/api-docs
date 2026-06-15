@@ -80,7 +80,7 @@ If the API does not return a 2XX response, it returns an HTTP error code with a 
 
 | Name           | Type   | Description |
 | -------------- | :----: | ----------- |
-| `ErrorType`    | string | A well-known error type. See [Error Handling](index.md#error-handling). |
+| `ErrorType`    | string | A well-known error type. See [Error Handling](overview.md#error-handling). |
 | `ErrorDetails` | string | Details about this specific error. |
 
 ## Next Step

@@ -28,11 +28,11 @@ The following list explains each error code, what it means, and whether the cond
 - **606** - **Invalid App Connection Credentials**
     - *Permanent* - The App Connection requires basic HTTP auth or a Bearer token. The credentials were missing or incorrect.
 - **607** - **File Download Limit Exceeded**
-    - *Permanent* - The HTTP **response** body exceeded the maximum size for this user's account. The per-file limit can be found using the [App Connection Info API](https://octoeverywhere.stoplight.io/docs/octoeverywhere-api-docs/5b0f8eae68257-app-connection-octo-everywhere-api).
+    - *Permanent* - The HTTP **response** body exceeded the maximum size for this user's account. The per-file limit can be found using the [App Connection Info API](app-connections/apis/info-api.md).
 - **608** - **File Upload Limit Exceeded**
-    - *Permanent* - The HTTP **request** body exceeded the maximum size for this user's account. The per-file limit can be found using the [App Connection Info API](https://octoeverywhere.stoplight.io/docs/octoeverywhere-api-docs/5b0f8eae68257-app-connection-octo-everywhere-api).
+    - *Permanent* - The HTTP **request** body exceeded the maximum size for this user's account. The per-file limit can be found using the [App Connection Info API](app-connections/apis/info-api.md).
 - **609** - **Webcam Back to Back Limit Exceeded**
-    - *Temporary* - The user has viewed the webcam too many times within a time window. The current limits can be found in the App OctoEverywhere API.
+    - *Temporary* - The user has viewed the webcam too many times within a time window. The current limits can be found in the [App Connection Info API](app-connections/apis/info-api.md).
 - **610** - **Plugin Update Required**
     - *(uncommon) Temporary* - The user must update their plugin for this API to work.
 - **611** - **No Beta Access**
@@ -40,4 +40,4 @@ The following list explains each error code, what it means, and whether the cond
 - **612** - **Plugin Error**
      - *(uncommon) Temporary* - An error in the plugin prevented this service call from completing successfully. Usually caused by a plugin bug, this is not expected to happen often. If a user hits this repeatedly, they should contact OctoEverywhere support.
 - **613** - **No Active Print**
-     - *(uncommon) Temporary* - Currently used only by the [Live Links creation API](https://octoeverywhere.stoplight.io/docs/octoeverywhere-api-docs/632a7f5513f9c-create-live-link-for-app-connections) when the `EndWhenCurrentPrintIsComplete` flag is passed. That flag requires an active print, so this error code is returned when no print is running. In the future, this error code could be used by other APIs, but each API doc will call it out when applicable.
+     - *(uncommon) Temporary* - Currently used only by the [Live Links creation API](app-connections/apis/live-links.md) when the `EndWhenCurrentPrintIsComplete` flag is passed. That flag requires an active print, so this error code is returned when no print is running. In the future, this error code could be used by other APIs, but each API doc will call it out when applicable.

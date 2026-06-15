@@ -19,7 +19,7 @@ This enables full MQTT access to Bambu Lab printers and Elegoo Centauri Carbon 2
 - **Full printer access:** Subscribe and publish to the same printer-specific MQTT topics your client would use on the local network.
 - **Printer credentials stay local:** OctoEverywhere handles the printer-side MQTT authentication through the user's installed plugin connection.
 - **Shared MQTT connection:** All MQTT connections share one common MQTT client connection to the 3D printer, which is great for printers with limited concurrent-client support.
-
+s
 ## Supported Printers
 
 - All Bambu Lab 3D printers
@@ -27,7 +27,7 @@ This enables full MQTT access to Bambu Lab printers and Elegoo Centauri Carbon 2
 
 ## Connection Endpoint
 
-The MQTT WebSocket Proxy can be used from a [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api_mqtt) or [App Connection](../app-connections/index.md) URL.
+The MQTT WebSocket Proxy can be used from a [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api_mqtt) or [App Connection](../app-connections/overview.md) URL.
 
 ```{.http .apirequest}
 wss://<unique-id>.octoeverywhere.com/octoeverywhere-command-api/proxy/mqtt
@@ -37,7 +37,7 @@ wss://<unique-id>.octoeverywhere.com/octoeverywhere-command-api/proxy/mqtt
 
 No MQTT authentication credentials are required, but authentication to OctoEverywhere is.
 
-The local MQTT authentication is handled by the OctoEverywhere plugin, and the OctoEverywhere service WebSocket connection is handled using the existing [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api_mqtt_auth) or [App Connection](../app-connections/index.md) authentication.
+The local MQTT authentication is handled by the OctoEverywhere plugin, and the OctoEverywhere service WebSocket connection is handled using the existing [Shared Connection](https://octoeverywhere.com/sharedconnections?source=docs_plugin_api_mqtt_auth) or [App Connection](../app-connections/overview.md) authentication.
 
 Shared Connection or App Connection authentication is usually sent through HTTP headers, which some MQTT clients may not support. In that case, send the `BearerToken` or HTTP `username` and `password` digest as a query parameter named `oe_api_key`.
 
