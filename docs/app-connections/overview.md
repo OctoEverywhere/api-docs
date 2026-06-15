@@ -27,7 +27,7 @@ App Connections give your app:
 - A unique App Connection hostname protected by header-based authentication.
 - Optional local printer details, including the printer's last known LAN IP address.
 - Optional OctoPrint API key generation during setup, so users do not need to manually find and paste an OctoPrint API key.
-- OctoEverywhere APIs for App Connection state, printer online state, account limits, Live Links, and Gadget AI failure detection status.
+- OctoEverywhere APIs for App Connection state, printer online state, account limits, Live Links, Gadget AI failure detection status, and app-owned notification webhooks.
 - A path to be listed by OctoEverywhere as an integrated app.
 
 ## Integration Pieces
@@ -38,7 +38,7 @@ App Connections have five useful integration points:
 | ---- | ------------ |
 | [App Connection Portal](portal.md) | Creates an App Connection through a hosted "OAuth-style" setup flow. |
 | [Using App Connections](usage.md) | Explains how to call the user's printer through the App Connection URL. |
-| [App APIs](apis/overview.md) | Lets your app query App Connection state, printer status, limits, Live Links, and Gadget status. |
+| [App APIs](apis/overview.md) | Lets your app query App Connection state, printer status, limits, Live Links, Gadget status, and app-owned notification webhooks. |
 | [OctoPrint API Key Generation](octoprint-api-key-generation.md) | Optionally asks the portal to generate an OctoPrint API key for your app. |
 | Local OctoEverywhere plugin API | Lets your app discover the OctoEverywhere Printer ID from a local OctoPrint instance before starting the portal. |
 
@@ -97,7 +97,7 @@ After the portal succeeds, replace the user's local printer host with the return
 
 ### 3. Query OctoEverywhere App APIs
 
-Use the App APIs to check App Connection state, printer online state, printer details, account limits, Live Link creation, and Gadget AI failure detection status.
+Use the App APIs to check App Connection state, printer online state, printer details, account limits, Live Link creation, Gadget AI failure detection status, and app-owned notification webhooks.
 
 [Explore App APIs](apis/overview.md){ .md-button }
 

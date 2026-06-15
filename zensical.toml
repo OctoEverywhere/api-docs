@@ -27,6 +27,7 @@ nav = [
       {"Info API" = "app-connections/apis/info-api.md"},
       {"Live Links" = "app-connections/apis/live-links.md"},
       {"Gadget Status" = "app-connections/apis/gadget-status.md"},
+      {"Notification Webhook" = "app-connections/apis/notification-webhook.md"},
     ]},
   ]},
   {"Printer API Remote Access" = "printer-api-remote-access/index.md"},

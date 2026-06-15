@@ -33,6 +33,7 @@ AppToken: <appApiToken>
 | [App Connection Info API](info-api.md) | Check App Connection validity, printer online state, printer details, user-facing printer URL, and account limits. |
 | [Create Live Link API](live-links.md) | Create a shareable Live Link for the printer associated with an App Connection. |
 | [Gadget Status API](gadget-status.md) | Read Gadget AI failure detection state, status, color, and rating for the active print. |
+| [Set Notification Webhook API](notification-webhook.md) | Set an app-owned webhook callback URL for standard OctoEverywhere notification events. |
 
 ## App Connection State
 
