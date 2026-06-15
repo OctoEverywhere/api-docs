@@ -1,3 +1,10 @@
+---
+title: 3D Printer API Remote Access
+description: Use OctoEverywhere to securely reach a printer's native HTTP REST, WebSocket, and MQTT APIs from apps and services on the public internet.
+og_title: Secure Remote Access to Native 3D Printer APIs
+og_description: Connect to OctoPrint, Klipper, Moonraker, Bambu Lab, PrusaLink, Elegoo, and more through OctoEverywhere's secure remote access layer.
+---
+
 # 🌍 3D Printer API Remote Access
 
 OctoEverywhere provides secure remote access to any 3D printer's HTTP REST and WebSocket APIs. This gives you full access to your 3D printer from any service or app on the public internet.

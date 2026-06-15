@@ -1,3 +1,10 @@
+---
+title: AI Failure Detection APIs
+description: Add OctoEverywhere's Gadget AI failure detection to your app with simple image-processing APIs and free monthly usage for developers.
+og_title: Add 3D Print Failure Detection to Your App
+og_description: Use the same Gadget AI that protects OctoEverywhere users to detect print failures, warn users, and power smarter 3D printing workflows.
+---
+
 # 🤖 AI Print Failure Detection APIs
 
 OctoEverywhere empowers the 3D printing community with free and unlimited AI print failure detection through [Gadget](https://octoeverywhere.com/gadget?source=dev_docs_ai). Gadget processes millions of images and hundreds of gigabytes of print data every day.

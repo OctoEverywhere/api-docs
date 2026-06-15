@@ -1,6 +1,8 @@
 ---
 title: App Connection APIs
-description: Query App Connection state, limits, Live Links, and Gadget status.
+description: Use App APIs to check App Connection state, printer details, user limits, Live Links, Gadget status, and app-owned notification webhooks.
+og_title: Manage App Connections with OctoEverywhere App APIs
+og_description: Read connection health, printer status, account limits, Live Links, Gadget state, and webhook settings from one secure App API surface.
 authors:
     - Quinn Damerell
 date: 2026-06-15

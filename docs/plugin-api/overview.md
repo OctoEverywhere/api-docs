@@ -1,3 +1,10 @@
+---
+title: 3D Printer Plugin APIs
+description: Use OctoEverywhere's printer-agnostic Plugin APIs for status, control, webcams, files, and MQTT access across OctoPrint, Klipper, Bambu Lab, PrusaLink, Elegoo, and more.
+og_title: One API Surface for Every 3D Printer Platform
+og_description: Build against OctoEverywhere Plugin APIs to read status, control printers, stream webcams, manage files, and proxy MQTT across popular 3D printer ecosystems.
+---
+
 # Plugin APIs
 
 ## Overview

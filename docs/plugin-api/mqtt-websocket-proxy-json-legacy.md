@@ -1,6 +1,8 @@
 ---
 title: Legacy JSON MQTT WebSocket Transport
 description: Legacy OctoEverywhere JSON MQTT WebSocket transport for backward-compatible Bambu Lab and Elegoo CC2 access.
+og_title: Legacy JSON MQTT Transport Reference
+og_description: Keep older Bambu Lab and Elegoo CC2 integrations working while moving to the standards-compliant MQTT-over-WebSocket proxy when ready.
 authors:
     - Quinn Damerell
 date: 2025-05-20

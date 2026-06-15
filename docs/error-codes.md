@@ -1,3 +1,10 @@
+---
+title: OctoEverywhere Custom Error Codes
+description: Understand OctoEverywhere's shared custom HTTP status codes for remote access, App Connections, Plugin APIs, and recovery handling.
+og_title: Handle OctoEverywhere API Errors with Confidence
+og_description: Decode the custom status codes OctoEverywhere uses for expired links, account limits, offline printers, revoked App Connections, and other API states.
+---
+
 # OctoEverywhere Custom Error Codes
 
 OctoEverywhere uses a common set of unique HTTP status codes to express errors without overlapping with codes returned by proxied services.

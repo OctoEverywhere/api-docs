@@ -1,6 +1,8 @@
 ---
 title: Using App Connections
-description: Use an App Connection URL to access a user's printer remotely.
+description: Call a user's printer through an App Connection URL with the same HTTP, WebSocket, file, and webcam behavior your app expects.
+og_title: Use App Connections for Full Remote Printer Access
+og_description: Relay HTTP, WebSocket, file, and webcam requests through OctoEverywhere while preserving methods, headers, bodies, and printer responses.
 authors:
     - Quinn Damerell
 date: 2026-06-15

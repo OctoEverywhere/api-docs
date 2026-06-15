@@ -1,6 +1,8 @@
 ---
 title: App Connection Portal
-description: Create App Connections through OctoEverywhere's hosted portal flow.
+description: Use OctoEverywhere's hosted portal to let users authorize an App Connection, choose a printer, and return secure app access tokens.
+og_title: Launch App Connections with the Hosted Portal
+og_description: Guide users through a secure OctoEverywhere authorization flow and receive the App Connection tokens your integration needs.
 authors:
     - Quinn Damerell
 date: 2026-06-15

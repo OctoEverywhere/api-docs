@@ -1,6 +1,8 @@
 ---
 title: 3D Printer Webcam API
-description: OctoEverywhere's webcam API lets you get webcam snapshots and streams from OctoPrint, Moonraker, Bambu Lab, PrusaLink and more from one common API!
+description: Get live webcam snapshots and streams from OctoPrint, Moonraker, Bambu Lab, PrusaLink, Elegoo, and more through one OctoEverywhere API.
+og_title: Stream 3D Printer Webcams from Anywhere
+og_description: Add remote webcam snapshots and MJPEG streams to your app with one OctoEverywhere API that works across popular 3D printer platforms.
 authors:
     - Quinn Damerell
 date: 2025-05-20

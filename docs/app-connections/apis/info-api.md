@@ -1,6 +1,8 @@
 ---
 title: App Connection Info API
-description: Get current state and limits for an App Connection.
+description: Check whether an App Connection is valid, whether the printer is online, and what limits apply to the user's OctoEverywhere account.
+og_title: Check App Connection Health and Limits
+og_description: Use the Info API to understand printer availability, account limits, connection validity, and the user-facing printer URL before your app makes requests.
 authors:
     - Quinn Damerell
 date: 2026-06-15

@@ -1,6 +1,8 @@
 ---
 title: OctoPrint API Key Generation
-description: Ask the App Connection Portal to generate an OctoPrint API key for your app.
+description: Ask the App Connection Portal to generate an OctoPrint API key so your app can securely authenticate to a user's OctoPrint instance.
+og_title: Generate OctoPrint API Keys During App Setup
+og_description: Let OctoEverywhere help your app collect the OctoPrint API key it needs as part of the App Connection portal flow.
 authors:
     - Quinn Damerell
 date: 2026-06-15

@@ -1,3 +1,9 @@
+---
+title: Plugin API Error Codes
+description: Understand service, plugin, and printer-originated errors returned by OctoEverywhere Plugin APIs and how your app should handle them.
+og_title: Handle Plugin API Errors Correctly
+og_description: Learn where Plugin API failures come from, how OctoEverywhere reports them, and what your app can do when printer, plugin, or service errors occur.
+---
 
 # Plugin API Error Codes
 

@@ -1,6 +1,8 @@
 ---
 title: 3D Printer Files API
-description: OctoEverywhere's files API lets you list, upload, download, and manage files from OctoPrint, Moonraker, Bambu Lab, PrusaLink and more from one common API!
+description: List, upload, download, and manage 3D printer files through one OctoEverywhere API across OctoPrint, Moonraker, Bambu Lab, PrusaLink, Elegoo, and more.
+og_title: Manage 3D Printer Files from One API
+og_description: Use OctoEverywhere's Files API to list, upload, download, delete, and inspect print files across the printer platforms your users already run.
 authors:
     - Quinn Damerell
 date: 2025-05-20

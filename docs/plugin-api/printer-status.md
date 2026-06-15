@@ -1,6 +1,8 @@
 ---
 title: 3D Printer Status API
-description: OctoEverywhere's status API lets you gives you real-time 3D print status information from OctoPrint, Moonraker, Bambu Lab, PrusaLink and more from one common API!
+description: Get real-time printer and print status from OctoPrint, Moonraker, Bambu Lab, PrusaLink, Elegoo, and more through one common API.
+og_title: Read Real-Time 3D Printer Status Anywhere
+og_description: Use OctoEverywhere's Status API to show printer state, active print progress, temperatures, and platform-agnostic status in your app.
 authors:
     - Quinn Damerell
 date: 2026-06-01

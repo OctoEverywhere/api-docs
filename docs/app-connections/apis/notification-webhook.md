@@ -1,6 +1,8 @@
 ---
 title: Set Notification Webhook API
-description: Set an App Connection notification webhook callback.
+description: Set or replace an app-owned notification webhook callback URL and event filter for the printer behind an App Connection.
+og_title: Add App-Owned 3D Printer Notification Webhooks
+og_description: Configure OctoEverywhere to send your app print started, completed, failed, Gadget, and error events through a callback URL you control.
 authors:
     - Quinn Damerell
 date: 2026-06-15

@@ -1,6 +1,8 @@
 ---
 title: Create Context API
-description: Create a new AI failure detection context for a 3D print.
+description: Start an AI failure detection session and get the context and upload URL needed to process print snapshots through Gadget.
+og_title: Create AI Failure Detection Contexts
+og_description: Initialize a print analysis context, choose model behavior, and get the upload URL your app needs for Gadget-powered failure detection.
 authors:
     - Quinn Damerell
 date: 2025-05-20

@@ -1,6 +1,8 @@
 ---
 title: 3D Printer Control API
-description: OctoEverywhere's printer control API provides printer-agnostic commands for pause, resume, cancel, lights, movement, extrusion, and temperature control.
+description: Send platform-agnostic commands for pause, resume, cancel, lights, movement, extrusion, and temperature control through OctoEverywhere.
+og_title: Control 3D Printers Across Platforms
+og_description: Add pause, resume, cancel, movement, extrusion, lights, and temperature controls to your app without writing separate code for every printer host.
 authors:
     - Quinn Damerell
 date: 2026-06-01

@@ -1,6 +1,8 @@
 ---
 title: Process API
-description: Process a print snapshot through OctoEverywhere AI failure detection.
+description: Send JPEG print snapshots to OctoEverywhere AI and get real-time failure signals, confidence, warning state, and status details.
+og_title: Process 3D Print Snapshots with Gadget AI
+og_description: Send webcam images to OctoEverywhere and get actionable print-quality signals your app can use to warn users or pause risky prints.
 authors:
     - Quinn Damerell
 date: 2025-05-20

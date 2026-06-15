@@ -1,3 +1,10 @@
+---
+title: Webhook Notifications Setup
+description: Choose LAN or public internet delivery and configure OctoEverywhere to POST real-time 3D printer notifications to your endpoint.
+og_title: Set Up Real-Time 3D Printer Webhooks
+og_description: Connect OctoEverywhere notifications to your own HTTP endpoint and choose LAN or public internet delivery for fast printer event automation.
+---
+
 # Webhook Notifications Setup
 
 There are two ways to receive HTTP POST webhook notifications:

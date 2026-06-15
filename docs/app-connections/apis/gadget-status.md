@@ -1,6 +1,8 @@
 ---
 title: Gadget Status API
-description: Read Gadget AI failure detection status for an App Connection.
+description: Read the current Gadget AI failure detection state, warning level, color, score, and active-print status for an App Connection.
+og_title: Show Gadget AI Failure Detection Status in Your App
+og_description: Pull live Gadget status through an App Connection and surface AI warning state, color, score, and print health in your own UI.
 authors:
     - Quinn Damerell
 date: 2026-06-15

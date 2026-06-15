@@ -1,6 +1,8 @@
 ---
 title: App Connections
-description: Add OctoEverywhere remote printer access to your app.
+description: Add secure OctoEverywhere remote printer access to your app so users can connect OctoPrint, Klipper, Bambu Lab, PrusaLink, Elegoo, and more.
+og_title: Bring OctoEverywhere Remote Access into Your App
+og_description: Use App Connections to give users secure remote access, printer state, Live Links, Gadget status, and app-owned webhooks without building cloud printer tunneling.
 authors:
     - Quinn Damerell
 date: 2026-06-15

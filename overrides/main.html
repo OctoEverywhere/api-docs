@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block site_meta %}
+  {% set open_graph = config.extra.open_graph | d({}, true) %}
+  {% if page.meta and page.meta.description %}
+    {% set meta_description = page.meta.description %}
+  {% else %}
+    {% set meta_description = config.site_description %}
+  {% endif %}
+  {% if page.meta and page.meta.og_title %}
+    {% set og_title = page.meta.og_title %}
+  {% elif open_graph.default_title %}
+    {% set og_title = open_graph.default_title %}
+  {% elif page.meta and page.meta.title %}
+    {% set og_title = page.meta.title %}
+  {% elif page.title and not page.is_homepage %}
+    {% set og_title = page.title | striptags %}
+  {% else %}
+    {% set og_title = config.site_name %}
+  {% endif %}
+  {% if page.meta and page.meta.og_description %}
+    {% set og_description = page.meta.og_description %}
+  {% elif open_graph.default_description %}
+    {% set og_description = open_graph.default_description %}
+  {% else %}
+    {% set og_description = meta_description %}
+  {% endif %}
+  {% set og_image = page.meta.og_image if page.meta and page.meta.og_image else open_graph.image %}
+  {% set og_type = page.meta.og_type if page.meta and page.meta.og_type else "website" %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  {% if meta_description %}
+    <meta name="description" content="{{ meta_description | e }}">
+  {% endif %}
+  {% if page.meta and page.meta.author %}
+    <meta name="author" content="{{ page.meta.author | e }}">
+  {% elif config.site_author %}
+    <meta name="author" content="{{ config.site_author | e }}">
+  {% endif %}
+  {% if page.canonical_url %}
+    <link rel="canonical" href="{{ page.canonical_url }}">
+  {% endif %}
+  {% if page.previous_page %}
+    <link rel="prev" href="{{ page.previous_page.url | url }}">
+  {% endif %}
+  {% if page.next_page %}
+    <link rel="next" href="{{ page.next_page.url | url }}">
+  {% endif %}
+  {% if config.extra.alternate is iterable %}
+    {% for alt in config.extra.alternate %}
+      <link rel="alternate" href="{{ alt.link | url }}" hreflang="{{ alt.lang | d(lang.t('language')) }}">
+    {% endfor %}
+  {% endif %}
+  {% set href = config.theme.favicon | d("assets/images/favicon.png") %}
+  <link rel="icon" href="{{ href | url }}">
+  <meta name="generator" content="{{ generator }}">
+
+  <meta property="og:title" content="{{ og_title | e }}">
+  <meta property="og:description" content="{{ og_description | e }}">
+  <meta property="og:type" content="{{ og_type | e }}">
+  {% if page.canonical_url %}
+    <meta property="og:url" content="{{ page.canonical_url }}">
+  {% endif %}
+  <meta property="og:site_name" content="{{ config.site_name | e }}">
+  {% if og_image %}
+    <meta property="og:image" content="{{ og_image }}">
+    <meta property="og:image:secure_url" content="{{ og_image }}">
+    <meta name="twitter:image" content="{{ og_image }}">
+  {% endif %}
+  {% if open_graph.logo %}
+    <meta property="og:logo" content="{{ open_graph.logo }}">
+  {% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  {% if open_graph.twitter_site %}
+    <meta name="twitter:site" content="{{ open_graph.twitter_site | e }}">
+  {% endif %}
+  {% if open_graph.twitter_creator %}
+    <meta name="twitter:creator" content="{{ open_graph.twitter_creator | e }}">
+  {% endif %}
+  <meta name="twitter:title" content="{{ og_title | e }}">
+  <meta name="twitter:description" content="{{ og_description | e }}">
+{% endblock %}

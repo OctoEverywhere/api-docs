@@ -1,4 +1,8 @@
 ---
+title: OctoEverywhere API Documentation
+description: Explore OctoEverywhere APIs for white-label 3D printing failure detection, app remote access, App Connections, webhooks, webcam streams, files, and more.
+og_title: OctoEverywhere Developer APIs for 3D Printing
+og_description: Build commercial products, app integrations, and hobby projects with white-label failure detection, secure remote access, App Connections, and printer APIs.
 # Hide the table of contents on this page.
 hide:
   - toc

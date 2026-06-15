@@ -1,3 +1,10 @@
+---
+title: Webhook Notification Event Types
+description: Review every OctoEverywhere webhook event type your endpoint can receive, from print progress and completion to Gadget AI warnings and printer errors.
+og_title: Know Every OctoEverywhere Webhook Event
+og_description: Map OctoEverywhere EventType values to real printer events so your app can route print starts, completions, progress, failures, Gadget alerts, and errors.
+---
+
 # Webhook Notification Event Types
 
 !!! note

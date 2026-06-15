@@ -1,6 +1,8 @@
 ---
 title: 3D Printer Webhooks
-description: Get free internet or LAN webhook notifications from your 3D printer!
+description: Get free internet or LAN webhook notifications for print progress, completion, failures, Gadget AI detections, and other 3D printer events.
+og_title: Free 3D Printer Webhook Notifications
+og_description: Receive real-time OctoEverywhere printer events over LAN or the public internet, including print progress, completion, errors, and Gadget AI detections.
 authors:
     - Quinn Damerell
 date: 2025-05-20

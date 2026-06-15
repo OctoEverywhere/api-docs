@@ -1,6 +1,8 @@
 ---
 title: Create Live Link API
-description: Create a shareable Live Link from an App Connection.
+description: Create shareable OctoEverywhere Live Links for the printer behind an App Connection so users can safely share active prints.
+og_title: Create Shareable 3D Printer Live Links
+og_description: Generate OctoEverywhere Live Links from your app so users can share secure, temporary views of their printer and active print.
 authors:
     - Quinn Damerell
 date: 2026-06-15

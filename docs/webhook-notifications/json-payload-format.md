@@ -1,3 +1,10 @@
+---
+title: Webhook JSON Payload Format
+description: Understand the JSON payload OctoEverywhere sends to webhook endpoints, including printer IDs, print details, progress, snapshots, and event data.
+og_title: Parse OctoEverywhere Webhook Payloads
+og_description: See the fields OctoEverywhere sends with each notification so your app can handle printer events, progress, snapshots, file names, and print timing.
+---
+
 # Webhook JSON Payload Format
 
 !!! note

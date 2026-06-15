@@ -1,6 +1,8 @@
 ---
 title: MQTT over WebSocket Remote Access
 description: Secure standards-compliant MQTT-over-WebSocket proxy for full Bambu Lab and Elegoo CC2 3D printer MQTT access from anywhere.
+og_title: Remote MQTT Access for Bambu Lab and Elegoo Printers
+og_description: Proxy printer MQTT over secure WebSockets through OctoEverywhere so your app can subscribe to status and send commands from anywhere.
 authors:
     - Quinn Damerell
 date: 2026-06-01
