@@ -7,8 +7,39 @@ og_description: See the fields OctoEverywhere sends with each notification so yo
 
 # Webhook JSON Payload Format
 
+## Overview
+
+This is the JSON payload sent by the OctoEverywhere service as the body payload for every Webhook callback POST. 
+
+These payloads are common to both [Notification webhooks](./overview.md) and [App Connection Webhooks](../app-connections/apis/notification-webhook.md).
+
+```{.json .apiresponse title="Example Webhook POST JSON Payload"}
+{
+    "PrinterId": "Id",
+    "SecretKey": "Key",
+    "PrintId": "Id",
+    "EventType": 1,
+    "PrinterName": "Ender3",
+    "SnapshotUrl": "https://...",
+    "QuickViewUrl": "https://...",
+    "FileName": "MyCoolPrint",
+    "DurationSec": 50,
+    "Progress": 21,
+    "TimeRemainingSec": 605,
+    "ZOffsetMM": 300,
+    "CurrentLayer": 50,
+    "TotalLayers": 100,
+    "Error": "Oh no, something bad happened!",
+    "PlatformErrorCode": "33"
+    ...
+}
+```
+
+
 !!! note
-    Bookmark this page. Over time, we will add new notification types and JSON properties.
+    These JSON keys will never be removed or changed, but overtime new properties will be added!
+
+## Payload Details
 
 The HTTP POST request includes a JSON body with these properties:
 
@@ -36,24 +67,12 @@ The HTTP POST request includes a JSON body with these properties:
 	- (int, optional) The estimated remaining print time reported by OctoPrint, in seconds.
 - **ZOffsetMM**
 	- (int, optional) The current Z-axis offset in millimeters.
+- **CurrentLayer**
+	- (int, optional) The current layer count being printed.
+- **TotalLayers**
+	- (int, optional) The total number of layers in the model being printed.
 - **Error**
-	- (string, optional) For event types that indicate an error, this string may contain an error message from OctoPrint describing the issue.
+	- (string, optional) If set, this contains an platform specific error message.
+- **PlatformErrorCode**
+	- (string, optional) If set, this contains an platform specific error code. The code format is taken directly format is taken directly from the 3D printer platform.
 
-An example JSON body might look like this:
-
-```json
-{
-    "PrinterId": "Id",
-    "SecretKey": "Key",
-    "PrintId": "Id",
-    "EventType": 1,
-    "PrinterName": "Ender3",
-    "SnapshotUrl": "https://...",
-    "QuickViewUrl": "https://...",
-    "FileName": "MyCoolPrint",
-    "DurationSec": 50,
-    "Progress": 21,
-    "TimeRemainingSec": 605,
-    "ZOffsetMM": 300,
-}
-```
