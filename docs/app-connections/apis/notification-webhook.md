@@ -68,7 +68,9 @@ When a notification fires, OctoEverywhere sends a `POST` request to the full `We
 
 To filter Event Types, simply list an inclusive list of events you want to receive callbacks for using the `InclusiveEventTypesFilter` POST parameter. This value is set or updated by each call to `SetNotificationWebhook`.
 
-## SetNotificationWebhook API
+## SetNotificationWebhook
+
+Sets or updates the App Connection notification webhook URL.
 
 ```{.http .apirequest title="HTTP Request"}
 POST https://octoeverywhere.com/api/appconnection/SetNotificationWebhook
@@ -105,8 +107,42 @@ The API will return a 200 `OK` if the API set was successful. Otherwise it will 
 
 See [OctoEverywhere Custom Error Codes](../../error-codes.md) for shared handling guidance.
 
+## DeleteNotificationWebhook
 
-## TestWebhook API
+Deletes the App Connection webhook notification URL to prevent future callbacks.
+
+```{.http .apirequest title="HTTP Request"}
+POST https://octoeverywhere.com/api/appconnection/DeleteNotificationWebhook
+```
+
+### Authentication
+
+Pass the App API token either as an `AppToken` header or in the JSON request body.
+
+| Name | Location | Type | Required | Description |
+| ---- | -------- | :--: | :------: | ----------- |
+| `AppToken` | Header or body | string | Yes | The `appApiToken` returned by the App Connection Portal. |
+
+### JSON Request Body
+
+```{.json .apirequest title="Example Request Body"}
+{
+    "AppToken": "<appApiToken>",
+}
+```
+
+| Name | Type | Required | Description |
+| ---- | :--: | :------: | ----------- |
+| `AppToken` | string | Conditional | Required if not sent as a header. |
+
+### Response
+
+The API will return a 200 `OK` if the API set was successful. Otherwise it will return an HTTP error with a JSON body payload with error details.
+
+See [OctoEverywhere Custom Error Codes](../../error-codes.md) for shared handling guidance.
+
+
+## TestWebhook
 
 App developers can easily invoke test webhook calls from the OctoEverywhere service to the configured `WebhookUrl` using this test API.
 
