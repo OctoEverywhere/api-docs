@@ -5,12 +5,12 @@ og_title: Stream 3D Printer Webcams from Anywhere
 og_description: Add remote webcam snapshots and MJPEG streams to your app with one OctoEverywhere API that works across popular 3D printer platforms.
 authors:
     - Quinn Damerell
-date: 2025-05-20
+date: 2026-07-31
 ---
 
 # Plugin Webcam API
 
-OctoEverywhere's Plugin Webcam API is a platform-agnostic 3D printer API that allows access webcam snapshots and streams from OctoPrint, Moonraker, Bambu Lab, and PrusaLink with a single common API surface.
+OctoEverywhere's Plugin Webcam API is a platform-agnostic 3D printer API that provides webcam snapshots and streams from OctoPrint, Moonraker, Bambu Lab, PrusaLink, and other supported platforms through one common API surface.
 
 !!! tip
     These APIs work with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more.
@@ -32,7 +32,7 @@ GET https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/webcam/lis
 ```{.json .apiresponse title="Example Response"}
 {
     "Status": 200,
-    "Result:": {
+    "Result": {
         "DefaultIndex": 0,
         "Webcams": [
             {
@@ -40,13 +40,28 @@ GET https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/webcam/lis
                 "FlipH": false,
                 "FlipV": false,
                 "Rotation": 0,
-                "Enabled": true
+                "Enabled": true,
+                "SnapshotUrl": "/webcam/?action=snapshot",
+                "StreamUrl": "/webcam/?action=stream"
             }
-            ...
         ]
     }
 }
 ```
+
+| Name | Type | Description |
+| ---- | :--: | ----------- |
+| `DefaultIndex` | int | Index selected when a snapshot or stream request omits `index`. |
+| `Webcams` | list | Webcams in the same index order used by the snapshot and stream commands. |
+| `Name` | string | User-facing webcam name. |
+| `FlipH` | bool | Whether clients should horizontally flip the image. |
+| `FlipV` | bool | Whether clients should vertically flip the image. |
+| `Rotation` | int | Clockwise display rotation: `0`, `90`, `180`, or `270`. |
+| `Enabled` | bool | Whether the webcam is enabled in the current plugin configuration. |
+| `SnapshotUrl` | string \| null | Platform-local snapshot URL, when available. Use the OctoEverywhere snapshot command for remote access. |
+| `StreamUrl` | string \| null | Platform-local stream URL, when available. Use the OctoEverywhere stream command for remote access. |
+
+The webcam summary embedded in the [Printer Status API](printer-status.md) deliberately omits `SnapshotUrl` and `StreamUrl` to keep the status response small. The standalone `webcam/list` command includes them.
 
 
 ## Get Webcam Snapshot
@@ -60,7 +75,7 @@ GET https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/webcam/sna
 
 | Name       |  Type  | Default              | Description                                         |
 | ---------- | :----: | -------------------- | --------------------------------------------------- |
-| `index` | int | 0          | The webcam index to capture a snapshot from.                            |
+| `index` | int | `DefaultIndex` | Webcam index to capture. When omitted, the value returned by `webcam/list` is used. |
 
 
 
@@ -74,4 +89,4 @@ GET https://<unique_id>.octoeverywhere.com/octoeverywhere-command-api/webcam/str
 
 | Name       |  Type  | Default              | Description                                         |
 | ---------- | :----: | -------------------- | --------------------------------------------------- |
-| `index` | int | 0          | The webcam index to stream from.                            |
+| `index` | int | `DefaultIndex` | Webcam index to stream. When omitted, the value returned by `webcam/list` is used. |

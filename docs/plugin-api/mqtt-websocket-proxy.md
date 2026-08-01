@@ -5,7 +5,7 @@ og_title: Remote MQTT Access for Bambu Lab and Elegoo Printers
 og_description: Proxy printer MQTT over secure WebSockets through OctoEverywhere so your app can subscribe to status and send commands from anywhere.
 authors:
     - Quinn Damerell
-date: 2026-06-01
+date: 2026-07-31
 ---
 
 # MQTT over WebSocket Remote Access
@@ -21,7 +21,7 @@ This enables full MQTT access to Bambu Lab printers and Elegoo Centauri Carbon 2
 - **Full printer access:** Subscribe and publish to the same printer-specific MQTT topics your client would use on the local network.
 - **Printer credentials stay local:** OctoEverywhere handles the printer-side MQTT authentication through the user's installed plugin connection.
 - **Shared MQTT connection:** All MQTT connections share one common MQTT client connection to the 3D printer, which is great for printers with limited concurrent-client support.
-s
+
 ## Supported Printers
 
 - All Bambu Lab 3D printers
@@ -58,9 +58,9 @@ When your client opens the WebSocket, the proxy starts and connects the MQTT ses
 
 ## MQTT Standards
 
-The OctoEverywhere MQTT WebSocket proxy fully supports the MQTT 3.1 over WebSocket standard. Since supported 3D printers use MQTT 3.1 today, this keeps the proxy broadly compatible.
+The OctoEverywhere MQTT WebSocket proxy supports MQTT 3.1.1 over WebSocket. MQTT 5 connections are not currently supported.
 
-Almost all MQTT clients and code libraries support MQTT 3.1 over a WebSocket transport.
+Most MQTT clients and libraries support MQTT 3.1.1 over a WebSocket transport. Configure the client for protocol level `4` when the library exposes a protocol-version setting.
 
 | Setting | Value |
 | ------- | ----- |

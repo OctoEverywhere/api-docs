@@ -1,16 +1,16 @@
 ---
 title: 3D Printer Status API
-description: Get real-time printer and print status from OctoPrint, Moonraker, Bambu Lab, PrusaLink, Elegoo, and more through one common API.
+description: Get real-time printer, print, webcam, and optional multi-material or multi-tool status through one common OctoEverywhere API.
 og_title: Read Real-Time 3D Printer Status Anywhere
 og_description: Use OctoEverywhere's Status API to show printer state, active print progress, temperatures, and platform-agnostic status in your app.
 authors:
     - Quinn Damerell
-date: 2026-06-01
+date: 2026-07-31
 ---
 
 # 3D Printer Status API
 
-The Printer Status API returns a printer-agnostic JSON object with the current printer state, active print details, available light states, OctoEverywhere Gadget status, platform version, supported control features, and webcam summary.
+The Printer Status API returns a printer-agnostic JSON object with the current printer state, active print details, available light states, optional material-system topology, OctoEverywhere Gadget status, platform version, supported control features, and webcam summary.
 
 !!! tip
     This common API works with every 3D printer OctoEverywhere supports, including OctoPrint, Moonraker, Klipper, Bambu Lab, Prusa, Elegoo, Creality, and more.
@@ -93,7 +93,7 @@ Plugin command APIs return a JSON envelope. `Status` is the plugin command statu
             }
         },
         "PlatformVersion": "1.0.0",
-        "Features": 31,
+        "Features": 63,
         "ListWebcams": {
             "DefaultIndex": 0,
             "Webcams": []
@@ -113,6 +113,7 @@ Some fields can be `null`, `0`, or omitted when the host platform does not provi
 | `Error` | string \| null | Optional short user-facing error string. |
 | `Lights` | list \| null | Available controllable lights. Use `Lights[].Name` with the [Set Light](printer-control.md#set-light) API. |
 | `CurrentPrint` | object | Current print progress, timing, file, layer, filament, and temperature details. |
+| `MaterialSystem` | object \| null | Optional normalized material-source and extrusion-tool topology. Present only when `IncludeMaterialSystem=true`; see [Material System](#material-system). |
 
 
 ## Current Print
@@ -330,3 +331,4 @@ Capability fields describe independent concepts and can be omitted when the plat
 | `FEATURE_HOMING` | `4` | [Home](printer-control.md#home) |
 | `FEATURE_EXTRUSION` | `8` | [Extrude](printer-control.md#extrude) |
 | `FEATURE_TEMPERATURE_CONTROL` | `16` | [Set Temp](printer-control.md#set-temp) |
+| `FEATURE_PRINT_START` | `32` | [Start Print](printer-control.md#start-print) |

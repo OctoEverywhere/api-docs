@@ -24,11 +24,10 @@ OctoEverywhere's Plugin APIs are a set of 3D printer platform-agnostic APIs that
 
 ### Plugin APIs Include
 
-- Real-time printer status, print status, AI failure detection status, and more.
+- Real-time printer status, print status, optional multi-material and multi-tool topology, AI failure detection status, and more.
 - Live multi-camera webcam snapshots and webcam streams.
-- File list, upload, download, and delete.
-- Printer control, including pause, cancel, home, move axis, extrude, and more.
-- One-shot commands and responses to the 3D printers control the WebSocket or MQTT server.
+- File list, metadata inspection, upload, download, delete, and plugin-log access.
+- Printer control, including start, pause, resume, cancel, home, move axis, extrude, temperature, and more.
 - Full MQTT over WebSocket real-time MQTT remote access proxy.
 
 ## Get Started
@@ -53,17 +52,18 @@ The Plugin APIs are callable from anywhere on the public internet and are secure
 
 ### HTTP Error Codes
 
-Plugin APIs return common [OctoEverywhere Error Codes](../error-codes.md) for OctoEverywhere service-side issues and standard HTTP error codes for plugin API issues.
+Plugin APIs return common [OctoEverywhere Error Codes](../error-codes.md) for service-side issues. Most plugin commands report their outcome in the JSON body's `Status` field, while raw file, log, and webcam responses can use actual HTTP error statuses. See [Plugin API Error Codes](plugin-api-errors.md).
 
 ## Plugin APIs
 
 ### [Printer Status](printer-status.md)
 
-A printer-agnostic JSON object with current printer status, print progress, percentage complete, estimated time remaining, and more.
+A printer-agnostic JSON object with current printer status, print progress, percentage complete, estimated time remaining, optional material-system topology, and more.
 
 ### [Printer Control](printer-control.md)
 
-Printer-agnostic control for pausing or canceling prints, toggling lights, homing axes, extruding filament, and more.
+Printer-agnostic control for starting, pausing, resuming, or canceling prints, toggling lights, homing axes, extruding filament, and more.
+
 
 ### [Webcam APIs](webcam-api.md)
 
@@ -71,7 +71,7 @@ A set of printer-agnostic webcam APIs, including camera lists, multi-camera snap
 
 ### [File APIs](files-api.md)
 
-A set of printer-agnostic files APIs, including list, upload, download, and delete.
+A set of printer-agnostic file APIs, including list, details, upload, download, delete, and OctoEverywhere plugin-log access.
 
 ### [MQTT over WebSocket Proxy](mqtt-websocket-proxy.md)
 
