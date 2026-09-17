@@ -1,132 +1,103 @@
 ---
-title: AI Failure Detection APIs
-description: Add OctoEverywhere's Gadget AI failure detection to your app with simple image-processing APIs and free monthly usage for developers.
-og_title: Add 3D Print Failure Detection to Your App
-og_description: Use the same Gadget AI that protects OctoEverywhere users to detect print failures, warn users, and power smarter 3D printing workflows.
+title: Free 3D Printing AI Failure Detection APIs
+description: Bring advanced, highly accurate AI 3D print failure detection to your products, print farm, or personal projects.
+og_title: Free 3D Printing AI Failure Detection APIs
+og_description: Bring advanced, highly accurate AI 3D print failure detection to your products, print farm, or personal projects.
 ---
 
 # 🤖 AI Print Failure Detection APIs
 
-OctoEverywhere empowers the 3D printing community with free and unlimited AI print failure detection through [Gadget](https://octoeverywhere.com/gadget?source=dev_docs_ai). Gadget processes millions of images and hundreds of gigabytes of print data every day.
+**Catch failed prints sooner. Save filament, time, and money.**
 
-Our AI failure detection service uses advanced ML models to process webcam images with high accuracy. Those models are continuously improved with real-time community feedback, making them more adaptive, robust, and accurate over time.
+[Gadget](https://octoeverywhere.com/gadget?source=oe_docs_gadget_api_overview_intro) brings AI failure detection with **industry-leading accuracy** to your 3D printing workflow. Use it with compatible print farm software, add it to a personal project, or bring it to your customers under your own brand. It is the same AI that powers OctoEverywhere's print failure detection, available wherever you want to build or use an integration.
 
-To turn image analysis into useful print decisions, OctoEverywhere also uses a temporal combination model. This model evaluates several signals over time to decide when to warn a user about a possible issue or suggest pausing a print.
+**You do not have to be a developer.** If your software already includes Gadget support, your API key connects it to our detection service. Your software handles sending images and responding to detections; you manage your key, usage, and billing on one page.
 
-Together, these systems run on OctoEverywhere's high-availability global server network and power the same failure detection experience trusted by the OctoEverywhere community.
+[Get Your Free API Key](https://octoeverywhere.com/gadgetapi?source=oe_docs_gadget_api_overview_hero_key){ .md-button .md-button--primary }
+[See Pricing](#pricing){ .md-button }
 
-!!! tip
-    **You do not need to attribute your AI failure detection system to OctoEverywhere.** You're free to build whatever you want.
+!!! tip "500 free print hours every month. No card required."
+    Every account includes **90,000 free inspections per monthly billing period** - equivalent to **500 print hours.** **A Free Usage Only limit is enabled by default.** Paid usage is optional: set up billing and explicitly turn off the limit when you are ready for more.
 
-## What You Can Build
+## Who Is It For? { #what-you-can-build }
 
-OctoEverywhere AI Failure Detection APIs give you access to the same AI failure detection service used by OctoEverywhere. The API is simple to integrate: your app or service sends JPEG images to OctoEverywhere, and the service returns the print quality signals needed to display status, warn users, or take action.
+| User | Put Gadget to Work |
+| --- | --- |
+| **Everyday makers** | Set up the [OctoEverywhere plugin](https://octoeverywhere.com/getstarted?source=oe_docs_gadget_api_overview_plugin_get_started) for you printer to unlock free and unlimited AI failure detection powered by Gadget. |
+| **Personal projects** | Add AI failure detection to your own dashboards, apps, automations, and weekend experiments. |
+| **Print farms** | Help catch failures before more filament and print time are wasted. If your farm software has Gadget built in, add your API key and follow its setup instructions. No coding required. |
+| **Businesses & white-label products** | Offer AI print failure detection under your own brand, with no OctoEverywhere attribution required. Scale to thousands or millions of users without building and hosting your own detection models. [Custom volume pricing is available.](https://octoeverywhere.com/support?instant=1&source=oe_docs_gadget_api_overview_white_label) |
+
+Gadget combines industry-leading AI image classification with a temporal AI model that follows each print over time. Together, they identify potential failures by analyzing both individual webcam images and how the print develops. Your software can use the resulting print-quality signals and recommendations to warn you or pause a print. Available alerts and automatic actions depend on the software you use.
+
+The models are continuously improved with community feedback and run on OctoEverywhere's global server network. You get the detection service while your software handles the printing workflow.
+
+## Get Your API Key
+
+1. Open [OctoEverywhere.com/GadgetAPI](https://octoeverywhere.com/gadgetapi?source=oe_docs_gadget_api_overview) and sign in or create an account.
+2. Choose **Copy API Key** - no credit card or billing setup is needed.
+3. Paste the key into your software's Gadget or OctoEverywhere AI failure detection settings and follow its instructions to enable detection. If you are building your own integration, start with the [SDK](developer-docs/overview.md#sdks) or [API overview](developer-docs/overview.md#api-overview) in our Developer Docs.
+
+An API key is the private code that connects your software to your Gadget account. Keep it private, and use the same account's key across your printers and tools. Their inspection usage adds together under that account's monthly allowance.
+
+
+### Stay Free or Enable Paid Usage
+
+Your [Gadget API account page](https://octoeverywhere.com/gadgetapi?source=oe_docs_gadget_api_overview_account_usage) shows your key, current usage, and billing-period dates. **Free Usage Only is enabled by default**, so inspection requests stop when you reach your free allowance. The allowance renews each monthly billing period; your key stays the same.
+
+- **Want to stay free?** Leave the limit on. You can add billing details in advance and still keep the free-only limit enabled.
+- **Need more inspections?** Select **Set Up Billing**, add a payment method, then turn off **Free Usage Only** to allow pay-per-call usage. You can re-enable the Free Usage Only limit whenever you wish.
+
+When inspections stop at the limit, your software receives `OE_FREE_USAGE_LIMIT_REACHED`. See [Error Handling](developer-docs/overview.md#error-handling) for more details.
 
 ## Pricing
 
-You only pay for what you use. **Every developer gets 5,000 API calls per month for free, which is about 55 hours of AI failure detection.**
+**Your first 500 print hours each month are free.** If you choose to enable paid usage, you only pay for inspection calls beyond your free allowance, with lower rates as your monthly usage grows. Prices below are shown in USD. All accounts have an enabled-by-default free usage limit stop, that can be turned off at anytime.
 
-Pricing uses additive tiers, so the cost per call decreases as your usage grows.
+### Pricing by Print Hours
 
-| Number of API Calls | Price Per API Call in USD |
-| ------------------- | ------------------------- |
-| 0-5,000             | Free                      |
-| 5,000-1m            | $0.0004                   |
-| 1m-20m              | $0.00025                  |
-| 20m+                | $0.00015                  |
+All print-hour pricing on this page assumes **one inspection every 20 seconds**: 180 inspection calls per print hour. A print hour is one printer monitored for one hour; usage across printers adds together. You can see your current usage on your [Gadget API account page.](https://octoeverywhere.com/gadgetapi?source=oe_docs_gadget_api_pricing)
 
-We offer volume pricing for customers with high API demand. [Contact us to discuss details.](https://octoeverywhere.com/support?source=dev_docs_ai_failure_detection)
+| Monthly Print Hours | Price per 1,000 Print Hours |
+| ------------------- | -------------------------- |
+| First 500           | Free                       |
+| Over 500 to 5,000    | $5.40                      |
+| Over 5,000 to 25,000 | $4.50                      |
+| Over 25,000         | $3.60                      |
 
-## SDKs
+### Pricing by Inspection Calls
 
-We currently offer an [AI Failure Detection SDK for Python](https://github.com/OctoEverywhere/Gadget-Python-Sdk), with more languages coming later.
+Billing is based on successful [Process API](process.md) inspection calls. [Create Context](create-context.md) calls are free. The call rates below are the same pricing as the print-hour table, expressed per 1,000 calls.
 
-**We recommend using the [Python SDK](https://github.com/OctoEverywhere/Gadget-Python-Sdk/blob/main/gadgetsdk/_gadgetinspectionsession.py) as a reference implementation.** It is the best way to understand the API parameters, calling patterns, and end-to-end flow.
+| Monthly Inspection Calls | Price per 1,000 Calls |
+| ------------------------ | -------------------- |
+| First 90,000              | Free                 |
+| Over 90,000 to 900,000     | $0.030               |
+| Over 900,000 to 4,500,000  | $0.025               |
+| Over 4,500,000            | $0.020               |
 
-## API Overview
+These are **progressive tiers**, based on total monthly usage across your account: each rate applies only to usage within that tier. Reaching a new tier does not change the price of earlier calls, and you do not need to buy blocks of 1,000 hours or calls.
 
-### 1. Create a Print Context
+For example, **6,000 print hours in a month cost $28.80** at the 20-second interval: the first 500 hours are free, the next 4,500 cost $24.30, and the remaining 1,000 cost $4.50.
 
-Create one context per print so the ML models have a clean session to work with. There is no charge for this API call.
+Use **20 seconds as the default inspection interval**. You can choose another interval, provided you always respect the latest `NextProcessIntervalSec` minimum returned by the Process API. Longer intervals use fewer calls per print hour; shorter intervals use more. The free allowance and billing are measured in calls, so the print hours covered by each tier change when you use a different interval.
 
-Create a context by calling the [Create Context API](create-context.md) with your API key and optional confidence parameters. The response includes:
+We offer volume pricing for customers with high API demand. [Contact us to discuss details.](https://octoeverywhere.com/support?source=oe_docs_gadget_api_overview_volume_pricing&instant=1)
 
-- `ContextId`: the new context ID.
-- `ProcessRequestUrl`: the primary URL to use for future [Process API](process.md) calls.
-- `FallbackProcessRequestUrl`: the fallback URL to use if the primary URL fails.
+[Get Your Free API Key](https://octoeverywhere.com/gadgetapi?source=oe_docs_gadget_api_overview_pricing_key){ .md-button .md-button--primary }
 
-Use the primary processing URL unless it fails. If it does, switch to the fallback URL and keep using it for the rest of the context lifetime.
+## Privacy
 
-### 2. Process Images
+Images submitted through the public Gadget APIs are **not used for training AI models**.
 
-To start AI failure detection, send a JPEG image to the [Process API](process.md) using the `ProcessRequestUrl` returned by [Create Context](create-context.md).
+## Developer Docs
 
-The Process API accepts `multipart/form-data` POST requests. Multipart form data is supported by built-in or standard HTTP libraries in Python, C#, Java, JavaScript, C++, and most other modern languages.
+Building your own integration? Explore our SDKs, API workflow, error handling, and high-availability guidance.
 
-The Process API evaluates the new image against the previous context. The temporal combination model then returns output based on the current image, previous context, and other signals:
-
-- `NextProcessIntervalSec` - The minimum number of seconds to wait before the next Process API call. This value changes based on server load and averages around 40 seconds.
-- `PrintQuality` - A 1-10 print quality score, where 10 is perfect print quality. Use this value for user-facing print status.
-- `WarningSuggested` - `true` when the model is confident that the user should be warned about a possible print issue.
-- `PauseSuggested` - `true` when the model is confident that the print has likely failed and should be paused.
-- `Score` - A raw 0-100 model score, where 0 is perfect and 100 indicates a strong probability of failure. Use this for advanced processing, not direct user-facing actions.
-
-### 3. Repeat
-
-Continue calling the [Process API](process.md) with new snapshots to keep the AI model updated with the current print state.
-
-Your integration **must wait at least the number of seconds returned by `NextProcessIntervalSec`** before calling the Process API again. You may wait longer if desired. Calling close to the minimum interval gives the temporal model more signals and can improve failure detection speed and accuracy.
-
-## Error Handling
-
-If any AI failure detection API fails, it returns a non-200 HTTP status code with a common JSON error object:
-
-```json
-{
-    "ErrorType": "OE_INTERNAL_ERROR",
-    "ErrorDetails": "A string with error details."
-}
-```
-
-`ErrorType` is one of the well-known error strings below. `ErrorDetails` provides additional information about the specific failure.
-
-### Client-Actionable Errors
-
-- `OE_BAD_ARGS` - Required API arguments were missing or invalid.
-- `OE_ARGS_PARSE_FAILED` - The API handler failed to parse the JSON request body.
-- `OE_CONTEXT_RATE_LIMITED` - The context made too many requests and was rate-limited.
-- `OE_IMAGE_DECODE_FAILED` - Returned by the [Process API](process.md) when the JPEG image could not be decoded.
-- `OE_INVALID_API_KEY` - The API key in the `X-API-Key` header was missing or incorrect.
-- `OE_API_KEY_DISABLED` - The API key has been disabled by the developer account. A disabled key will not be re-enabled; create a new key instead.
-- `OE_API_KEY_BLOCKED_PAYMENT_FAILED` - The API key account owner has an outstanding balance that must be paid before the [Process API](process.md) can be used.
-
-### Backend Server Errors
-
-- `OE_BACKEND_THROTTLED` - The [Process API](process.md) request was temporarily throttled. Try again after the next delay interval.
-- `OE_INTERNAL_ERROR` - A generic service error. Try again after the next delay interval.
-
-## High Availability
-
-OctoEverywhere's AI failure detection service is designed for high availability by controlling Process API request rate and balancing traffic across regions.
-
-### ProcessRequestUrl and FallbackProcessRequestUrl
-
-`ProcessRequestUrl` and `FallbackProcessRequestUrl` are returned by the [Create Context API](create-context.md) and should be used for the lifetime of the context.
-
-Use `ProcessRequestUrl` for all [Process API](process.md) calls unless a call fails. If a network, server, or other failure occurs, switch to `FallbackProcessRequestUrl` for the rest of the context lifetime.
-
-The primary URL lets the service route traffic intelligently while the system is healthy. The fallback URL uses global routing so requests can be handled by another region if the primary path fails.
-
-Load balancing prioritizes server capacity over physical distance. Process API calls already have meaningful compute latency, so additional network transit time is usually trivial.
-
-### NextProcessIntervalSec
-
-`NextProcessIntervalSec` globally controls how quickly clients can send Process API requests. The goal is to accept as many requests as possible for strong failure detection without overwhelming the service during peak load.
-
-Your app or service may call the [Process API](process.md) at any interval longer than the last returned `NextProcessIntervalSec`. Shorter intervals, as long as they respect that minimum, can produce faster and more accurate failure detection, but they also increase API usage.
+[Read the Developer Docs](developer-docs/overview.md){ .md-button .md-button--primary }
 
 ## Get in Touch
 
-We would love to hear what you're building and help you get started.
+Need help connecting your software, choosing the right setup for your farm, or building an integration? We would love to help you get started.
 
-[Contact Our Dev Team](https://octoeverywhere.com/support?instant=t){ .md-button .md-button--primary }
+[Contact Our Team](https://octoeverywhere.com/support?instant=t&source=oe_docs_gadget_api_overview_contact&instant=1){ .md-button .md-button--primary }

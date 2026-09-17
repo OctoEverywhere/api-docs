@@ -10,31 +10,43 @@ date: 2025-05-20
 
 # Create Context API
 
-The Create Context API creates a new AI failure detection context. A context lasts for one print, so create a fresh context for every new print.
+A context is Gadget's analysis session for one print. Create one context for each print, then reuse it for every image from that print.
 
-Contexts do not need to be destroyed manually. They automatically expire after 14 days.
+Contexts expire automatically after 14 days. You do not need to delete them.
 
 !!! tip
     There is no charge for calling this API. AI failure detection API usage pricing only applies to the [Process API](process.md).
 
+Get your [API key](https://octoeverywhere.com/gadgetapi?source=oe_docs_gadget_api_overview_create_context_get_key) without setting up billing. **Free Usage Only** is on by default. See [pricing and free usage](overview.md#pricing) for details.
+
 ## HTTP Request
 
-This API should always be called on the primary Gadget API host.
+Always send Create Context requests to the primary Gadget API host:
 
 ```{.http .apirequest title="HTTP Request"}
 POST https://gadget-pv1-oeapi.octoeverywhere.com/api/gadget/v1/createcontext
+```
+
+Send `{}` to use the default confidence levels of `3`. In this Bash example, replace `prod_YOUR_API_KEY` with your key:
+
+```bash
+curl -X POST \
+  'https://gadget-pv1-oeapi.octoeverywhere.com/api/gadget/v1/createcontext' \
+  -H 'X-API-Key: prod_YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{}'
 ```
 
 ## Headers
 
 | Name        | Type   | Required | Description |
 | ----------- | :----: | :------: | ----------- |
-| `X-API-Key` | string | Yes      | Your OctoEverywhere developer API key. |
+| `X-API-Key` | string | Yes      | Your Gadget API key. |
 
 
 ## JSON Request Body
 
-`WarningConfidenceLevel` and `PauseConfidenceLevel` are optional. Both values control how confident the temporal combination model must be before it suggests a warning or pause action.
+`WarningConfidenceLevel` and `PauseConfidenceLevel` are optional integers from `1` to `5`. Both default to `3` and control how confident Gadget must be before it suggests a warning or pause. Your app decides how to act on those suggestions.
 
 Lower values make the model more sensitive, which can catch more issues but may increase false positives. Higher values require more confidence, which reduces false positives but may miss smaller failures.
 
@@ -47,12 +59,12 @@ Lower values make the model more sensitive, which can catch more issues but may 
 
 | Name                     | Type | Default | Description |
 | ------------------------ | :--: | :-----: | ----------- |
-| `WarningConfidenceLevel` | int  | 3       | Optional. Sets the warning confidence level from `1` to `5`, where `1` warns sooner and `5` warns only with higher confidence. |
-| `PauseConfidenceLevel`   | int  | 3       | Optional. Sets the pause confidence level from `1` to `5`, where `1` pauses sooner and `5` pauses only with higher confidence. |
+| `WarningConfidenceLevel` | int  | 3       | Optional. `1` suggests a warning sooner; `5` requires higher confidence before suggesting a warning. |
+| `PauseConfidenceLevel`   | int  | 3       | Optional. `1` suggests a pause sooner; `5` requires higher confidence before suggesting a pause. |
 
 ## Successful Response
 
-The response contains the context ID and the two URLs used by the [Process API](process.md).
+The response contains the context ID and two complete URLs for the [Process API](process.md). Both URLs already include the context ID. Use them as returned; do not rebuild the URL or append the ID.
 
 ```{.json .apiresponse title="Example 2XX Response"}
 {
@@ -65,8 +77,8 @@ The response contains the context ID and the two URLs used by the [Process API](
 | Name                        | Type   | Description |
 | --------------------------- | :----: | ----------- |
 | `ContextId`                 | string | The ID of the new context. |
-| `ProcessRequestUrl`         | string | The primary URL to use for all Process API calls for the lifetime of this context. |
-| `FallbackProcessRequestUrl` | string | The fallback URL to use if `ProcessRequestUrl` fails. Once your app switches to this URL, continue using it for the lifetime of the context. |
+| `ProcessRequestUrl`         | string | The complete primary URL. Start sending snapshots for this print here. |
+| `FallbackProcessRequestUrl` | string | The complete fallback URL. See [retries and fallback URLs](developer-docs/overview.md#retries-and-fallback-urls) for when to use it. |
 
 
 ## Error Response
@@ -75,16 +87,18 @@ If the API does not return a 2XX response, it returns an HTTP error code with a 
 
 ```{.json .apiresponse title="Example Error Response"}
 {
-    "ErrorType": "OE_BAD_ARGS",
+    "ErrorType": "OE_ARGS_PARSE_FAILED",
     "ErrorDetails": "The request body could not be parsed."
 }
 ```
 
 | Name           | Type   | Description |
 | -------------- | :----: | ----------- |
-| `ErrorType`    | string | A well-known error type. See [Error Handling](overview.md#error-handling). |
+| `ErrorType`    | string | A well-known error type. See [Error Handling](developer-docs/overview.md#error-handling). |
 | `ErrorDetails` | string | Details about this specific error. |
+
+For recovery steps, including `OE_API_KEY_IP_RESTRICTED`, see [Error Handling](developer-docs/overview.md#error-handling).
 
 ## Next Step
 
-After creating a context, call the [Process API](process.md) using the returned `ProcessRequestUrl`.
+Send a JPEG snapshot to the [Process API](process.md) using the returned `ProcessRequestUrl`, then follow its [inspection timing guidance](process.md#nextprocessintervalsec) for the next image.

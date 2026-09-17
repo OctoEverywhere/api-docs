@@ -10,16 +10,16 @@ date: 2025-05-20
 
 # Process API
 
-The Process API is where the AI does the heavy lifting.
+Send a JPEG snapshot and get a print-quality score, warning and pause suggestions, and the minimum delay before your next snapshot.
 
-This API must be called with a context created by the [Create Context API](create-context.md). Each request sends a recent JPEG image of the print. OctoEverywhere's ML image models process the image, then the temporal combination model returns output based on the current image, previous context, and other signals.
+Start with the [Create Context API](create-context.md). Using the same context lets Gadget consider results from earlier snapshots when checking how the print is progressing.
 
 !!! tip
-    Process API usage is counted as part of [AI failure detection pricing](overview.md#pricing). Every developer gets 5,000 free calls per month, which is about 55 hours of printing.
+    Get your [API key](https://octoeverywhere.com/gadgetapi?source=oe_docs_gadget_api_overview_process_get_key) without setting up billing. See [pricing and free usage](overview.md#pricing) for details.
 
 ## HTTP Request
 
-Use the `ProcessRequestUrl` returned by the [Create Context API](create-context.md). If that URL fails, switch to the returned `FallbackProcessRequestUrl` for the rest of the context lifetime.
+Use the full `ProcessRequestUrl` returned by the [Create Context API](create-context.md), exactly as returned. It already includes the context ID. See [retries and fallback URLs](developer-docs/overview.md#retries-and-fallback-urls) if that server is unavailable.
 
 ```{.http .apirequest title="HTTP Request"}
 POST https://<your-process-host>.octoeverywhere.com/api/gadget/v1/process/{ID}
@@ -30,7 +30,7 @@ POST https://<your-process-host>.octoeverywhere.com/api/gadget/v1/process/{ID}
 
 | Name        | Type   | Required | Description |
 | ----------- | :----: | :------: | ----------- |
-| `X-API-Key` | string | Yes      | Your OctoEverywhere developer API key. |
+| `X-API-Key` | string | Yes      | Your Gadget API key. |
 
 
 ## Path Parameters
@@ -42,19 +42,27 @@ POST https://<your-process-host>.octoeverywhere.com/api/gadget/v1/process/{ID}
 
 ## Request Body
 
-Send the image as a `multipart/form-data` POST body. Include exactly one attached file; the uploaded file name does not matter.
+Send exactly one image file in a `multipart/form-data` POST body; JPEG is recommended. The image file can be up to **6 MiB (6,291,456 bytes)**, excluding multipart overhead. The field name and filename can be anything; this example uses `image` and `print.jpg`.
 
-This request type is supported by common HTTP libraries in modern languages. The [Python SDK](https://github.com/OctoEverywhere/Gadget-Python-Sdk/blob/861583ed69a696523b3fb3288736572a2e61f504/gadgetsdk/_gadgetinspectionsession.py#L201) shows the expected calling pattern using the Python `requests` library.
+### Example Request
 
-```{.http .apirequest title="Request Body"}
-Content-Type: multipart/form-data
+Replace the URL placeholder with the full `ProcessRequestUrl`, add your key, and point curl at your JPEG file:
+
+```{.bash .apirequest title="curl Example"}
+PROCESS_REQUEST_URL='PASTE_FULL_ProcessRequestUrl_HERE'
+
+curl --request POST "$PROCESS_REQUEST_URL" \
+    -H 'X-API-Key: prod_YOUR_API_KEY' \
+    -F 'image=@print.jpg'
 ```
+
+Let curl set `Content-Type` so it includes the required multipart boundary. For Python, the [standalone HTTP example](https://github.com/OctoEverywhere/Gadget-Python-Sdk/blob/main/examples/raw_requests.py) shows the upload, timing, and error handling using `requests`.
 
 ## Successful Response
 
 ```{.json .apiresponse title="Example 200 Response"}
 {
-    "NextProcessIntervalSec": 40,
+    "NextProcessIntervalSec": 20,
     "PrintQuality": 8,
     "WarningSuggested": false,
     "PauseSuggested": false,
@@ -62,28 +70,33 @@ Content-Type: multipart/form-data
 }
 ```
 
-| Name                     | Type | Description |
-| ------------------------ | :--: | ----------- |
-| `NextProcessIntervalSec` | int  | The minimum number of seconds to wait before the next Process API call. The value is at least `20` seconds and may increase based on server load. |
-| `PrintQuality`           | int  | A 1-10 print quality score, where `10` is perfect print quality. Use this for user-facing print status. |
-| `WarningSuggested`       | bool | `true` when the model is confident the user should be warned about a possible print issue. |
-| `PauseSuggested`         | bool | `true` when the model is confident the print has likely failed and should be paused. |
-| `Score`                  | int  | A raw 0-100 model score, where `0` is perfect and `100` indicates a strong probability of failure. Use this for advanced processing, not direct user-facing actions. |
+### Which fields should I use?
 
+| Name                     | Type | Use it for |
+| ------------------------ | :--: | ----------- |
+| `NextProcessIntervalSec` | int  | Scheduling the next snapshot. Wait at least this many seconds; use the latest response. |
+| `PrintQuality`           | int  | Showing print status in your UI. Ranges from `1` to `10`, with `10` best. |
+| `WarningSuggested`       | bool | Deciding when to warn the user about a possible print issue. |
+| `PauseSuggested`         | bool | Deciding when to pause a print that has likely failed. |
+| `Score`                  | int  | Advanced analysis. Most apps can ignore this raw `0`-`100` score; `0` is best, the opposite of `PrintQuality`. |
+
+The warning and pause flags are recommendations. Your software sends the warning or pauses the printer.
 
 ## Response Details
 
 ### NextProcessIntervalSec
 
-`NextProcessIntervalSec` is the minimum time that must elapse before the next Process API call. Your integration can wait longer, but it must not call the Process API sooner than this interval.
+Use a **20-second inspection interval by default**. You can choose any interval that is at least the `NextProcessIntervalSec` returned by the latest Process API call. If the API returns a higher minimum, increase your interval to match it.
 
-Calling after each minimum interval, or as close as practical, gives the temporal combination model the best data for confident print-state decisions.
+For example, wait `max(your_configured_interval, NextProcessIntervalSec)` seconds before sending the next snapshot, with `your_configured_interval` defaulting to `20`.
+
+All [print-hour pricing](overview.md#pricing) uses a 20-second interval: 180 inspection calls equal one print hour. Billing is based on inspection calls, so a longer interval uses fewer calls per actual hour of printing, and a shorter interval uses more.
 
 ### PrintQuality
 
-`PrintQuality` is the user-facing print quality score from the temporal combination model. It ranges from `1` to `10`, where `10` is perfect print quality.
+`PrintQuality` ranges from `1` to `10`, where `10` is perfect print quality.
 
-Use `PrintQuality` for UI status, printer displays, dashboards, or other user-facing print health indicators. Do not use this field alone to trigger warnings or pause actions; use `WarningSuggested` and `PauseSuggested` for that.
+Use it on printer displays, dashboards, or anywhere you show print status. For warnings and pause actions, use `WarningSuggested` and `PauseSuggested` instead of acting on this score alone.
 
 | Value | Meaning |
 | :---: | ------- |
@@ -100,21 +113,21 @@ Use `PrintQuality` for UI status, printer displays, dashboards, or other user-fa
 
 ### WarningSuggested
 
-`WarningSuggested` is `true` when the temporal combination model is confident that there may be a print issue and the user should be informed.
+`WarningSuggested` is `true` when Gadget is confident enough to recommend warning the user about a possible print issue.
 
-The required confidence can be adjusted with `WarningConfidenceLevel` when creating the context. This decision uses several signals, so `PrintQuality` may stay in the `1-3` range for 30-80 seconds before the model has enough confidence to raise this flag.
+Adjust the required confidence with `WarningConfidenceLevel` when creating the context. Gadget considers several signals over time, so `PrintQuality` may stay in the `1-3` range for 30-80 seconds before this flag becomes `true`.
 
 ### PauseSuggested
 
-`PauseSuggested` is `true` when the temporal combination model is confident that the print has probably failed and should be paused.
+`PauseSuggested` is `true` when Gadget is confident enough to recommend pausing a print that has probably failed.
 
 The required confidence can be adjusted with `PauseConfidenceLevel` when creating the context. Because pausing a print is intrusive, the model waits for high confidence before raising this flag. `PrintQuality` may stay in the `1-3` range for 60-120 seconds before `PauseSuggested` becomes `true`.
 
 ### Score
 
-`Score` is the raw temporal combination model score. It ranges from `0` to `100`, where `0` is a perfect print and `100` indicates a strong probability of failure.
+Most apps can ignore `Score`. It's the raw model score, from `0` for a perfect print to `100` for a strong probability of failure.
 
-Use this value for advanced processing, such as smoothing, aggregation, or custom heuristics. Do not use it directly for user-facing status or actions like warnings and pauses.
+Use it for custom analysis, such as smoothing or combining results. Use the quality score and suggestion flags for user-facing status and actions.
 
 ## Error Response
 
@@ -129,13 +142,21 @@ If the API does not return a 200 response, it returns an HTTP error code with a 
 
 | Name           | Type   | Description |
 | -------------- | :----: | ----------- |
-| `ErrorType`    | string | A well-known error type. See [Error Handling](overview.md#error-handling). |
+| `ErrorType`    | string | A well-known error type. See [Error Handling](developer-docs/overview.md#error-handling). |
 | `ErrorDetails` | string | Details about this specific error. |
+
+### API Key IP Restricted
+
+HTTP `403` with `ErrorType` set to `OE_API_KEY_IP_RESTRICTED` means another API key has already claimed this request's public IP address. Stop sending inspections with the rejected key and follow the recovery guidance in [Error Handling](developer-docs/overview.md#error-handling). Do not retry automatically or switch to the fallback URL for this error.
+
+### Free Usage Limit Reached
+
+HTTP `429` with `ErrorType` set to `OE_FREE_USAGE_LIMIT_REACHED` means the monthly free allowance has been exhausted and either billing is not set up or **Free Usage Only** is enabled.
+
+Stop sending inspections until the allowance resets, or until the account owner sets up billing and turns off **Free Usage Only** at [OctoEverywhere.com/gadgetapi](https://octoeverywhere.com/gadgetapi?source=oe_docs_gadget_api_overview_process_free_limit). Creating a new context or switching to the fallback URL does not reset the allowance.
+
+Handle this error separately from temporary rate limiting. Do not retry it in a loop; a `Retry-After` header does not mean the monthly allowance has reset.
 
 ## Calling Pattern
 
-1. Create a context with the [Create Context API](create-context.md).
-2. Send a JPEG snapshot to the `ProcessRequestUrl`.
-3. Wait at least `NextProcessIntervalSec`.
-4. Send the next snapshot.
-5. If the primary process URL fails, switch to `FallbackProcessRequestUrl` for the rest of the context lifetime.
+After each successful request, wait for your [inspection interval](#nextprocessintervalsec), then send the next snapshot. See [retries and fallback URLs](developer-docs/overview.md#retries-and-fallback-urls) and [error handling](developer-docs/overview.md#error-handling) for recovery steps.

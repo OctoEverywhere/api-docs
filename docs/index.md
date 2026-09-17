@@ -20,7 +20,7 @@ We encourage our community to hack, build, and experiment with our APIs, and we 
 ## Explore the OctoEverywhere APIs. What Will You Build?
 
 ### 🤖 [AI Print Failure Detection APIs](./ai-failure-detection-apis/overview.md)
-Build your own AI print failure detection app or service using our world-class detection APIs.
+Catch print failures with industry-leading accuracy in supported farm software, apps, and personal projects. **Get 500 free print hours every month—no card required.**
 
 ### 📱 [App Connections](./app-connections/overview.md)
 Integrate OctoEverywhere into your app or service to give your users secure remote access and AI failure detection status.

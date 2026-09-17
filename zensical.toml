@@ -49,8 +49,11 @@ nav = [
   ]},
   {"AI Failure Detection APIs" = [
     {"Overview" = "ai-failure-detection-apis/overview.md"},
-    {"Create Context" = "ai-failure-detection-apis/create-context.md"},
-    {"Process" = "ai-failure-detection-apis/process.md"}
+    {"Developer Docs" = [
+      {"Overview" = "ai-failure-detection-apis/developer-docs/overview.md"},
+      {"Create Context" = "ai-failure-detection-apis/create-context.md"},
+      {"Process" = "ai-failure-detection-apis/process.md"}
+    ]}
   ]},
   {"API Error Codes" = "error-codes.md"},
 ]
