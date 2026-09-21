@@ -35,7 +35,7 @@ Use `PrintQuality` to display print status, and `WarningSuggested` or `PauseSugg
 
 ### 3. Wait and Repeat
 
-Use a **20-second interval by default**. After each response, wait at least the latest `NextProcessIntervalSec` before sending another snapshot. If that minimum is longer than your chosen interval, wait longer.
+Use **`NextProcessIntervalSec.Recommended` as the default interval** from the latest response. To inspect faster, choose a custom interval that is at least `NextProcessIntervalSec.Minimum`, currently 5 seconds. Faster inspections use more calls and increase paid usage costs.
 
 Keep sending snapshots while the print is running. See [inspection timing](../process.md#nextprocessintervalsec) for custom intervals and how they affect usage.
 
@@ -64,7 +64,7 @@ Wait until your next inspection interval before retrying. Avoid immediate retry 
 
 | Error | Meaning | What to Do |
 | --- | --- | --- |
-| `OE_CONTEXT_RATE_LIMITED` | HTTP `429`: this context is sending snapshots too quickly. | Increase the delay and respect the latest `NextProcessIntervalSec`. |
+| `OE_CONTEXT_RATE_LIMITED` | HTTP `429`: this context is sending snapshots too quickly. | Increase the delay and respect the latest `NextProcessIntervalSec.Minimum`. |
 | `OE_BACKEND_THROTTLED` | Gadget is temporarily busy. | Wait before sending the next snapshot. |
 | `OE_INTERNAL_ERROR` | Gadget couldn't complete the request. | Wait and retry. See [Retries and Fallback URLs](#retries-and-fallback-urls) if the server is unavailable. |
 
@@ -102,5 +102,5 @@ Start with `ProcessRequestUrl`. If a connection or server failure prevents proce
 
 When you receive a JSON API error, check [Error Handling](#error-handling) first. Invalid requests, account problems, IP restrictions, and usage limits need the actions listed there; switching URLs won't fix them.
 
-Keep the same context when retrying or switching URLs, and wait between attempts. Use your chosen inspection interval, defaulting to 20 seconds, and respect the most recent `NextProcessIntervalSec`.
+Keep the same context when retrying or switching URLs, and wait between attempts. Use the most recent `NextProcessIntervalSec.Recommended` by default, or a custom inspection interval that is at least `NextProcessIntervalSec.Minimum`. Before the first successful response, use 20 seconds as the default delay between attempts.
 

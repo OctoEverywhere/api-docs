@@ -80,7 +80,7 @@ These are **progressive tiers**, based on total monthly usage across your accoun
 
 For example, **6,000 print hours in a month cost $28.80** at the 20-second interval: the first 500 hours are free, the next 4,500 cost $24.30, and the remaining 1,000 cost $4.50.
 
-Use **20 seconds as the default inspection interval**. You can choose another interval, provided you always respect the latest `NextProcessIntervalSec` minimum returned by the Process API. Longer intervals use fewer calls per print hour; shorter intervals use more. The free allowance and billing are measured in calls, so the print hours covered by each tier change when you use a different interval.
+Use **`NextProcessIntervalSec.Recommended` as the default inspection interval**, taking the value from the latest Process API response. You can inspect faster than recommended, provided you respect `NextProcessIntervalSec.Minimum`, currently 5 seconds. Shorter intervals use more calls, consume the free allowance sooner, and increase paid usage costs; longer intervals use fewer calls. The free allowance and billing are measured in calls, so the print hours covered by each tier change when you use a different interval.
 
 We offer volume pricing for customers with high API demand. [Contact us to discuss details.](https://octoeverywhere.com/support?source=oe_docs_gadget_api_overview_volume_pricing&instant=1)
 

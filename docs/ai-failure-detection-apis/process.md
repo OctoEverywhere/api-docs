@@ -10,7 +10,7 @@ date: 2025-05-20
 
 # Process API
 
-Send a JPEG snapshot and get a print-quality score, warning and pause suggestions, and the minimum delay before your next snapshot.
+Send a JPEG snapshot and get a print-quality score, warning and pause suggestions, and the minimum and recommended delays before your next snapshot.
 
 Start with the [Create Context API](create-context.md). Using the same context lets Gadget consider results from earlier snapshots when checking how the print is progressing.
 
@@ -62,7 +62,10 @@ Let curl set `Content-Type` so it includes the required multipart boundary. For 
 
 ```{.json .apiresponse title="Example 200 Response"}
 {
-    "NextProcessIntervalSec": 20,
+    "NextProcessIntervalSec": {
+        "Minimum": 5,
+        "Recommended": 20
+    },
     "PrintQuality": 8,
     "WarningSuggested": false,
     "PauseSuggested": false,
@@ -74,7 +77,7 @@ Let curl set `Content-Type` so it includes the required multipart boundary. For 
 
 | Name                     | Type | Use it for |
 | ------------------------ | :--: | ----------- |
-| `NextProcessIntervalSec` | int  | Scheduling the next snapshot. Wait at least this many seconds; use the latest response. |
+| `NextProcessIntervalSec` | object | Scheduling the next snapshot. Contains `Minimum` and `Recommended` delays in seconds; use the latest response. |
 | `PrintQuality`           | int  | Showing print status in your UI. Ranges from `1` to `10`, with `10` best. |
 | `WarningSuggested`       | bool | Deciding when to warn the user about a possible print issue. |
 | `PauseSuggested`         | bool | Deciding when to pause a print that has likely failed. |
@@ -86,11 +89,16 @@ The warning and pause flags are recommendations. Your software sends the warning
 
 ### NextProcessIntervalSec
 
-Use a **20-second inspection interval by default**. You can choose any interval that is at least the `NextProcessIntervalSec` returned by the latest Process API call. If the API returns a higher minimum, increase your interval to match it.
+Use **`NextProcessIntervalSec.Recommended` as the default inspection interval**, taking the value from the latest Process API response. You can inspect faster than recommended, provided you wait at least `NextProcessIntervalSec.Minimum` seconds between calls.
 
-For example, wait `max(your_configured_interval, NextProcessIntervalSec)` seconds before sending the next snapshot, with `your_configured_interval` defaulting to `20`.
+| Field | Type | Description |
+| ----- | :--: | ----------- |
+| `Minimum` | int | The shortest allowed delay in seconds before the next snapshot. Currently `5`. |
+| `Recommended` | int | The server's suggested delay in seconds before the next snapshot. Use this by default. |
 
-All [print-hour pricing](overview.md#pricing) uses a 20-second interval: 180 inspection calls equal one print hour. Billing is based on inspection calls, so a longer interval uses fewer calls per actual hour of printing, and a shorter interval uses more.
+For a custom interval, wait `max(your_configured_interval, NextProcessIntervalSec.Minimum)` seconds before sending the next snapshot. If no custom interval is configured, use `NextProcessIntervalSec.Recommended`.
+
+All [print-hour pricing](overview.md#pricing) uses a 20-second interval: 180 inspection calls equal one print hour. Billing is based on inspection calls, so inspecting faster uses more calls, consumes the free allowance sooner, and increases paid usage costs. A 5-second interval uses four times as many calls per actual hour of printing as a 20-second interval.
 
 ### PrintQuality
 
