@@ -82,6 +82,8 @@ For example, **6,000 print hours in a month cost $28.80** at the 20-second inter
 
 Use **`NextProcessIntervalSec.Recommended` as the default inspection interval**, taking the value from the latest Process API response. You can inspect faster than recommended, provided you respect `NextProcessIntervalSec.Minimum`, currently 5 seconds. Shorter intervals use more calls, consume the free allowance sooner, and increase paid usage costs; longer intervals use fewer calls. The free allowance and billing are measured in calls, so the print hours covered by each tier change when you use a different interval.
 
+A fixed interval is supported for predictable usage. Developers can optionally follow [`FasterInspectionSuggested`](process.md#fasterinspectionsuggested) to use the latest recommended interval when Gadget is building confidence about a possible issue, while always respecting the minimum delay. This flag is normally off; opting in can temporarily increase inspection calls and usage costs.
+
 We offer volume pricing for customers with high API demand. [Contact us to discuss details.](https://octoeverywhere.com/support?source=oe_docs_gadget_api_overview_volume_pricing&instant=1)
 
 [Get Your Free API Key](https://octoeverywhere.com/gadgetapi?source=oe_docs_gadget_api_overview_pricing_key){ .md-button .md-button--primary }

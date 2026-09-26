@@ -37,6 +37,8 @@ Use `PrintQuality` to display print status, and `WarningSuggested` or `PauseSugg
 
 Use **`NextProcessIntervalSec.Recommended` as the default interval** from the latest response. To inspect faster, choose a custom interval that is at least `NextProcessIntervalSec.Minimum`, currently 5 seconds. Faster inspections use more calls and increase paid usage costs.
 
+For predictable usage, you can keep a fixed interval. Optionally follow [`FasterInspectionSuggested`](../process.md#fasterinspectionsuggested): when it is `true`, use the latest `NextProcessIntervalSec.Recommended`; when it is `false` or missing, return to your configured interval. Always respect `NextProcessIntervalSec.Minimum`. This flag is normally off and requests faster snapshots only when Gadget has strong evidence of a possible issue and needs to build confidence. Continue using `WarningSuggested` and `PauseSuggested` for actions.
+
 Keep sending snapshots while the print is running. See [inspection timing](../process.md#nextprocessintervalsec) for custom intervals and how they affect usage.
 
 ## SDKs

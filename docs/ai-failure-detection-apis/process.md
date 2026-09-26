@@ -66,6 +66,7 @@ Let curl set `Content-Type` so it includes the required multipart boundary. For 
         "Minimum": 5,
         "Recommended": 20
     },
+    "FasterInspectionSuggested": false,
     "PrintQuality": 8,
     "WarningSuggested": false,
     "PauseSuggested": false,
@@ -78,6 +79,7 @@ Let curl set `Content-Type` so it includes the required multipart boundary. For 
 | Name                     | Type | Use it for |
 | ------------------------ | :--: | ----------- |
 | `NextProcessIntervalSec` | object | Scheduling the next snapshot. Contains `Minimum` and `Recommended` delays in seconds; use the latest response. |
+| `FasterInspectionSuggested` | bool | Optionally switching from a fixed interval to the recommended interval while Gadget builds confidence about a possible issue. Treat a missing field as `false`. |
 | `PrintQuality`           | int  | Showing print status in your UI. Ranges from `1` to `10`, with `10` best. |
 | `WarningSuggested`       | bool | Deciding when to warn the user about a possible print issue. |
 | `PauseSuggested`         | bool | Deciding when to pause a print that has likely failed. |
@@ -96,9 +98,33 @@ Use **`NextProcessIntervalSec.Recommended` as the default inspection interval**,
 | `Minimum` | int | The shortest allowed delay in seconds before the next snapshot. Currently `5`. |
 | `Recommended` | int | The server's suggested delay in seconds before the next snapshot. Use this by default. |
 
-For a custom interval, wait `max(your_configured_interval, NextProcessIntervalSec.Minimum)` seconds before sending the next snapshot. If no custom interval is configured, use `NextProcessIntervalSec.Recommended`.
+For a custom interval, wait `max(your_configured_interval, NextProcessIntervalSec.Minimum)` seconds before sending the next snapshot. A fixed interval is supported for predictable usage. You can optionally follow [`FasterInspectionSuggested`](#fasterinspectionsuggested) to temporarily use the recommended interval when Gadget detects a possible issue. If no custom interval is configured, use `NextProcessIntervalSec.Recommended`.
 
 All [print-hour pricing](overview.md#pricing) uses a 20-second interval: 180 inspection calls equal one print hour. Billing is based on inspection calls, so inspecting faster uses more calls, consumes the free allowance sooner, and increases paid usage costs. A 5-second interval uses four times as many calls per actual hour of printing as a 20-second interval.
+
+### FasterInspectionSuggested
+
+`FasterInspectionSuggested` is an **optional timing hint** for apps that normally use a fixed inspection interval. You can ignore it and keep your configured interval for predictable usage, or use it to follow the same signal that makes OctoEverywhere inspect more frequently internally. Apps that already follow `NextProcessIntervalSec.Recommended` need no extra timing logic.
+
+The flag is normally `false` and is expected to stay off roughly 99% of the time during normal printing; this is an expectation, not a guaranteed percentage. Gadget sets it to `true` only when it has strong evidence of a possible issue and wants faster snapshots to build confidence before recommending a warning or pause. It covers possible warning and pause conditions, and can still be `true` on the response that first sets `WarningSuggested` or `PauseSuggested`.
+
+To opt in, choose your next delay after each successful response:
+
+- If `FasterInspectionSuggested` is `true`, use the latest `NextProcessIntervalSec.Recommended`.
+- If it is `false` or missing, return to your configured interval. Treating a missing field as `false` keeps clients compatible with older responses.
+- **Always wait at least the latest `NextProcessIntervalSec.Minimum`**, currently 5 seconds. This flag never permits calls below the minimum.
+
+For example, with a configured interval in seconds:
+
+```python
+intervals = response["NextProcessIntervalSec"]
+next_delay = configured_interval
+if response.get("FasterInspectionSuggested", False):
+    next_delay = intervals["Recommended"]
+next_delay = max(next_delay, intervals["Minimum"])
+```
+
+Use `WarningSuggested` and `PauseSuggested` to decide when to act; `FasterInspectionSuggested` only controls timing. Temporarily shortening the interval makes more inspection calls, which can consume the free allowance sooner and increase paid usage costs.
 
 ### PrintQuality
 
